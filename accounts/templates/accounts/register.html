@@ -1,0 +1,45 @@
+{% extends 'base/main.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+{% include 'base/navbar.html' %}
+<div class="register-card">
+    <div class="container">
+    
+        <div class="login-wrap">
+            <form class="login-form" method="post">
+                {% csrf_token %}
+                <div class=" text-center mt-5">
+                    <img src="{% static 'image/logo2.svg' %}" alt="logo" class="logo_img mx-auto mt-5">
+                </div>
+    
+                <h2 class="mb-4 mt-4 ">Create a New Account</h2>
+                {% if messages %}
+                  {% for message in messages%}
+                  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    {{message}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                  {% endfor %}
+                {% endif %}
+                
+                
+    
+                {{ form|crispy }}
+
+                
+    
+                <button type="submit" class="btn btn-primary mt-2">Register now</button>
+                <!-- login if account is existing -->
+                <p class="small font-weight-bold mt-3 pb-3">
+                  <a href="{% url 'login' %}">Already a member? Sign in.</a>
+                </p>
+              </form>
+        </div>
+    </div>
+    
+</div>
+
+
+{% endblock content %}
