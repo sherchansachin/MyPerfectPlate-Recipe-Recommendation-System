@@ -25,9 +25,12 @@
                 {% csrf_token %}
                 <label class="small font-weight-bold mb-2">{{ form.email.label}}</label>
                 {{ form.email }}
-                <button class="btn btn-primary btn-block py-2 mb-4 mt-2 font-weight-bold" type="submit"
+                <button class="btn btn-primary btn-block py-2 mb-3 mt-2 font-weight-bold" type="submit"
                     value="Send e-mail">Request Password Reset</button>
 
+                    <p class="small fw-bold pb-3">
+                        <a href="{% url 'login' %}">OR, Return to Login Page?</a>
+                      </p>
 
                 <hr class="mb-3">
                 <p class="small text-center">An email will be sent to you to change your password,

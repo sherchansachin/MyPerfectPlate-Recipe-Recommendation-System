@@ -156,7 +156,8 @@ a{
     font-size: 16px;
   }
   
-  
+
+
   .login-wrap{
     display: flex;
     margin-top: 10px;
@@ -165,7 +166,7 @@ a{
   }
 
   .login-form{
-    width: 470px;
+    width: 440px;
   }
 
   button#toggle-password {
