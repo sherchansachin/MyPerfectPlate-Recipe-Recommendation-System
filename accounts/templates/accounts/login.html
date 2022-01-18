@@ -1,5 +1,6 @@
 {% extends 'base/main.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block content %}
 
 {% include 'base/navbar.html' %}
@@ -13,7 +14,7 @@
                     <img src="{% static 'image/logo2.svg' %}" alt="logo" class="logo_img mx-auto mt-5">
                 </div>
 
-                <h2 class="mb-4 mt-2 ">Login to your account</h2>
+                <h2 class="mb-4 mt-4 ">Log In to Your Account</h2>
                 {% if messages %}
                   {% for message in messages%}
                   <div class="alert alert-primary alert-dismissible fade show" role="alert">
@@ -23,14 +24,8 @@
                   {% endfor %}
                 {% endif %}
                 
-                <div class="mb-2 mt-3">
-                  <label for="exampleInputEmail1" class="form-label">Username</label>
-                  <input type="text" class="form-control" name="username" aria-describedby="emailHelp" autofocus>
-                </div>
-                <div class="mb-2 mt-3">
-                  <label for="password" class="form-label">Password</label>
-                  <input type="password" id="password" name="password" class="form-control rounded-right" required>
-                </div>
+                {{ form|crispy }}
+
                 <!-- <div class="mb-3">
                   <label for="exampleInputPassword1" class="form-label">Password</label>
                   <input type="password" class="form-control" name="password">
@@ -40,14 +35,14 @@
                   <label class="form-check-label" for="exampleCheck1">Show Password</label>
                 </div>
                 
-                <button type="submit" class="btn btn-primary px-3 mt-2">Log in</button>
+                <button type="submit" class="btn btn-primary py-2  mt-2 fw-bold w-100">Log in</button>
                 <!-- forget password -->
                 <p class="small font-weight-bold mt-3">
                   <a href="{% url 'password_reset' %}">Forgot Password?</a>
                 </p>
                 <!-- register a new account -->
-                <p class="small font-weight-bold mt-1 pb-3">
-                  <a href="{% url 'register' %}">Don't have an account? Create one.</a>
+                <p class="small font-weight-bold mt-1 pb-3">Don't have an account? 
+                  <a href="{% url 'register' %}">Create one.</a>
                 </p>
               </form>
         </div>

@@ -1,7 +1,8 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages, auth
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import AuthenticationForm
+from . import forms
 
 from .forms import RegistrationForm
 # Create your views here.
@@ -35,17 +36,26 @@ def loginUser(request):
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
+        form = forms.UserLoginForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(request,username=username, password=password)
 
-        user = authenticate(request, username=username, password=password)
-
-        if user is not None:
-            login(request, user)
-            # messages.success(request, "Logged in successfully! ")
-            return redirect("home")
+            if user is not None:
+                login(request, user)
+                # messages.success(request, "Logged in successfully! ")
+                return redirect("home")
         else:
-            messages.info(request, 'Username OR password is incorrect')
+            # messages.error(request, 'Invalid username or password, Note that both fields may be case-sensitive.')
+            return render(request, 'accounts/login.html', context={'form':form})
 
-    return render(request, 'accounts/login.html', {})
+    else:
+        form = forms.UserLoginForm()
+        return render(request, 'accounts/login.html', context={'form':form})
+
+
+    
 
 # logout
 def logoutUser(request):
