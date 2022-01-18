@@ -3,6 +3,16 @@
 font-family: 'Lato', sans-serif;
 font-family: 'Inter', sans-serif;
 */
+
+body {
+  Font-Family: 'Nunito', Sans-Serif;
+  Font-Size: 16px;
+  }
+
+h1, h2, h3, h4, h5, h6 {
+  Font-Family: 'Libre Baskerville', Serif;
+  }
+
 a{
     text-decoration: none;
 }
@@ -13,9 +23,8 @@ a{
 
   
 .navbar .nav-link {
-    font-family: 'Inter', sans-serif;
     color: #fff;
-    font-weight: 400;
+    font-weight: 600;
     }
 
   .space{
@@ -128,10 +137,9 @@ a{
 
   
   .hero h1 {
-    letter-spacing: 1px;
-    font-size: 3.75rem;
+    font-size: 3.45rem;
     line-height: 5rem;
-    font-family: 'Inter', sans-serif;
+    font-weight: 800;
   }
 
 
@@ -148,13 +156,6 @@ a{
   }
 
   
-  
-  
-  .para{
-    width: 50%;
-    font-weight: 300;
-    font-size: 16px;
-  }
   
 
 
