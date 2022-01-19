@@ -1,0 +1,21 @@
+{% extends 'base/main.html' %}
+{% load static %}
+
+{% block content %}
+
+{% include 'base/navbar.html' %}
+
+
+<section class="container py-5 mt-5">
+    <div class="dash-board text-center py-5">
+        <div class="container py-5">
+            <h1 class="mb-5">User Profile | {{user.username}}</h1>
+            <p class="lead">Welcome to your Profile, Here you can see your saved recipes, your meal plans and your favourites.</p>
+            
+        </div>
+    </div>
+</section>
+
+
+
+{% endblock content %}

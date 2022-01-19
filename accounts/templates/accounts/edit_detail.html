@@ -1,0 +1,52 @@
+{% extends 'base/main.html' %}
+{% load static %}
+
+{% block content %}
+
+{% include 'base/navbar.html' %}
+
+<div class="container py-5">
+    <section class="px-md-5 mx-md-5 text-start dark-grey-text py-5">
+        <div class="row d-flex justify-content-center mt-4">
+            <div class="col-lg-6 col-md-10">
+
+                <form class="p-4 rounded" method="POST" enctype="multipart/form-data">
+                    <h2 class="mb-4">Change your details</h2>
+                    <p>You can edit your account details using the following form:</p>
+                    {% if edit_form.is_valid %}
+                    <div class="alert alert-success" role="alert">
+                        User's details successfully updated!
+                    </div>
+                    {% endif %}
+
+                    {% if edit_form.errors %}
+                    <div class="alert alert-danger" role="alert">
+                        Error: Maybe the email has already been taken!
+                    </div>
+                    {% endif %}
+
+                    {% csrf_token %}
+                    <label class="small fw-bold">{{ edit_form.first_name.label}}</label>
+                    {{ edit_form.first_name }}
+                    <label class="small fw-bold">{{ edit_form.last_name.label}}</label>
+                    {{ edit_form.last_name }}
+                    <label class="small fw-bold">{{ edit_form.email.label}}</label>
+                    {{ edit_form.email }}
+                    <button class="btn btn-primary py-2 w-100 mb-3 mt-3 fw-bold" type="submit"
+                        value="Save changes">Save Changes</button>
+                    <hr class="mb-3">
+                </form>
+
+            </div>
+        </div>
+    </section>
+</div>
+
+
+
+
+
+
+
+
+{% endblock content %}

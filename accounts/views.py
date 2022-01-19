@@ -1,11 +1,31 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages, auth
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.decorators import login_required
 from . import forms
 
-from .forms import RegistrationForm
+from .forms import RegistrationForm, UserDetailForm
 # Create your views here.
+
+
+@login_required
+def profile(request):
+    return render(request, 'accounts/profile.html')
+
+
+@login_required
+def edit_user(request):
+    
+    if request.method == 'POST':
+        edit_form = UserDetailForm(instance=request.user, data=request.POST)
+        if edit_form.is_valid():
+            # check & save the user's changed details
+            edit_form.save()
+    else:
+        edit_form = UserDetailForm(instance=request.user)
+    return render(request, 'accounts/edit_detail.html', {'edit_form': edit_form})
+
+
 
 def register(request):
 
@@ -32,6 +52,7 @@ def register(request):
 
 
 def loginUser(request):
+
 
     if request.method == 'POST':
         username = request.POST['username']
