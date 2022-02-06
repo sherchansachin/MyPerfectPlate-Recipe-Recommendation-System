@@ -5,7 +5,7 @@
 {% include 'base/transparent-navbar.html' %}
 
 <section class="back">
-<div class="container col-10 py-5 hero">
+<div class="container col-10 py-2 hero">
   <div class="row align-items-center g-lg-5 py-5">
     <div class="col-lg-6 col-md-7 py-5">
       <h1 class="mb-2">Find your <br> Perfect Recipes</h1>
@@ -14,21 +14,17 @@
         <form>
           <div class="row">
             <div class="col-lg-10 col-md-8 d-flex align-items-center form-group">
+              <i class="fas fa-search p-2"></i>
                 <input class="form-control border-0 shadow-0" type="search" name="search"  id="search-keyword" placeholder="I want to cook">
             </div>
             <div class="col-lg-2 col-md-4 form-group mb-0">
-                <a class="btn btn-primary btn-block search-btn p-2 px-3 h-100">Search</a>
+                <a class="btn btn-primary search-btn p-2 px-3 h-100">Search</a>
             </div>
-            <!-- <script>
-                function search_keyword(){
-                    var keyword = $("#search-keyword").val();
-                    console.log(keyword);
-                    window.location.href="./restaurant/1?search=" + keyword;
-                };
-            </script> -->
+            
         </div>
         </form>
       </div>
+      <p class="form-text small mt-3">Search through over hunderds of recipes on My perfect plate</p>
     </div>
     <div class="col-lg-6 col-md-5">
       <img src="{% static 'image/hero1.svg' %}" class="d-block mx-lg-auto img-fluid" alt="person cooking illustration" width="700" height="500" loading="lazy">

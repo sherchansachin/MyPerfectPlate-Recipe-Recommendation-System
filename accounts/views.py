@@ -29,18 +29,14 @@ def edit_user(request):
 
 def register(request):
 
-    # if request.user.is_authenticated:
-    #     return redirect('/')
+    if request.user.is_authenticated:
+        return redirect("home")
 
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
-            form.save()
-            email = form.cleaned_data['email']
-            password = form.cleaned_data['password1']
-
+            user = form.save()
             # authenticate and login
-            user = authenticate(username=email, password=password)
             login(request, user)
             # messages.success(request, "Registered successfully! ")
             return redirect('home')
@@ -53,10 +49,11 @@ def register(request):
 
 def loginUser(request):
 
+    if request.user.is_authenticated:
+        return redirect("home")
+
 
     if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
         form = forms.UserLoginForm(request, data=request.POST)
         if form.is_valid():
             username = form.cleaned_data.get('username')

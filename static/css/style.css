@@ -42,7 +42,7 @@ a{
   
   /* Change navbar styling on scroll  */
   .navbar.active {
-    background: rgb(243, 246, 248);
+    background: #FFFEFE;
     box-shadow: 1px 5px 10px rgba(0, 0, 0, 0.1);
   }
   
@@ -117,8 +117,10 @@ a{
 
 .search-bar{
   background: #fff;
-  box-shadow: 0 0 0.2rem rgb(0 0 0 / 10%);
+  box-shadow: 0 0 0.4rem rgb(0 0 0 / 10%);
+  padding: .6125rem .6125rem;
 }
+
 .shadow-0 {
   box-shadow: none !important;
 }
@@ -155,6 +157,11 @@ a{
     
   }
 
+  .back{
+    background: url(../image/home-bg.jpg) no-repeat;
+    background-size: cover;
+    justify-content: center;
+  }
   
   
 
