@@ -189,3 +189,81 @@ a{
   }
   
  
+  /* recipe page */
+
+  .allrecipes{
+    /* maybe F9F8F9 */
+    background: #FAF8EE;
+    border-top: 0.1px solid #3d7ca7;
+  }
+
+  .all_title{
+    color: #1B4D7A;
+  }
+
+  .card, .card-header, .card-body, .card-footer{
+    border-radius:0px !important;
+}
+  .allrecipes a{
+    color: #000!important;
+  }
+
+  .recipe_category{
+    font-weight: 400;
+    color: #1B4D7A;
+  }
+
+  .crumbs{
+    color: #0191C1;
+  }
+
+  .allrecipes .card:hover {
+    transform: scale(1.04);
+    border: 10px solid;
+    border-image-slice: 1;
+    border-width: 2px;
+    box-shadow: 6px 6px 0px 0px #26B7C5;
+    transition: all 0.2s;
+  }
+
+  .top-heading{
+    border-left: 3px solid #3275A2;
+    padding: 1rem 0 0.5rem 2rem;
+  }
+
+  .recipes .breadcrumb-box{
+    padding: 1rem 0 0 0.5rem;
+  }
+
+
+  .category-name{
+    font-size: 1.125rem;
+    color: #1B4C7B;
+    line-height: 1.8;
+    text-decoration: underline;
+
+  }
+
+  .category-name:hover{
+    text-decoration: none;
+  }
+
+  .recipe_des {
+    margin-top: 40px;
+  }
+
+  .btn-link{
+    color: #1c5b96;
+    font-weight: 600;
+  }
+
+  .btn-link:hover{
+    text-decoration: none;
+    color: #388cda;
+  }
+
+  /* recipe details */
+
+  .details{
+    margin-top: 60px;
+  }

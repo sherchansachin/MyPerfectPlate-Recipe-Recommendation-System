@@ -1,0 +1,89 @@
+{% extends 'base/main.html' %}
+{% load static %}
+{% block content %}
+
+{% include 'base/navbar.html' %}
+<style>
+    .image-resize {
+        height: 290px;
+        object-fit: cover;
+    }
+</style>
+
+            
+<section class="recipes mt-5">
+    <div class="container py-5">
+        <div class="row">
+          <div class="col-md-12 col-lg-8">
+            <div class="top-heading">
+              <h1 class="info mb-3">Browse Recipes</h1>
+              <p>Get different recipes that are tested, tasted, and approved by My Perfect Plate to ensure
+                great results. Find inspirations or filters recipes by categories.</p>
+            </div>
+            </div>
+          <div class="col-md-12 col-lg-4 mt-5">
+            <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'home'%}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Recipes</li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+    </div>
+</section>
+
+<!-- filter -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-11">
+      <h4><i class="fas fa-tag me-3" style="color: #3275A2;"></i>Recipes by categories</h4>
+          <div class="mt-4 mb-4">
+          {% for c in categories %}
+          <a href="{% url 'filterCategory' c.slug %}">
+          <p class="d-inline pe-5 category-name fw-bold">{{c.main_category}}</p>
+           </a>
+          {% endfor %}
+        </div>
+  </div>
+    </div>
+    
+  
+</div>
+
+            
+<section class="allrecipes py-5">
+   
+    <div class="container">
+        <div class="title-wrap d-flex justify-content-between mb-2">
+            <h4 class="all_title">All Recipes</h4>
+            <p class="mt-1"><span class="fw-bold">{{recipe_count}}</span> recipes found</p>
+        </div>
+       
+        <div class="row">
+            {% for recipe in all_recipes %}
+            <div class="col-lg-3 py-3">
+                <a class="recipe-title" href="{% url 'recipeDetails' id=recipe.id%}">
+                    <div class="card border mb-2" style="height: 29rem;">
+                        <img class="card-img-top border-bottom image-resize" src="{{recipe.image}}" alt="">
+                        <div class="card-body">
+                            <p class="recipe_category">#{{recipe.category}}</p>
+
+                            <h6 class="mt-2 mb-3 recipe_title fw-bolder">{{ recipe.title }}</h6>
+                            <p class="mt-5">Recipe by: {{recipe.created_by}}</p>
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    </div>
+</section>
+        
+            
+
+
+  
+
+
+
+{% endblock content %}
