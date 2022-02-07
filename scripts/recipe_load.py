@@ -7,12 +7,12 @@ import csv  # https://docs.python.org/3/library/csv.html
 from main.models import Category, Recipes
 
 def run():
-    fhand = open('main/recipe01.csv')
+    fhand = open('main/recipe02.csv')
     reader = csv.reader(fhand)
     next(reader)  # Advance past the header
 
-    Category.objects.all().delete()
-    Recipes.objects.all().delete()
+    # Category.objects.all().delete()
+    # Recipes.objects.all().delete()
 
     #title, prep, category, ingredient, instruction, pic, recipeby, calo, carbo, sod, cholestrol, fat, protiens, Main_Category
 
