@@ -8,6 +8,8 @@ django = "*"
 pandas = "*"
 django-crispy-forms = "*"
 python-decouple = "*"
+django-extensions = "*"
+django-autoslug = "*"
 
 [dev-packages]
 
