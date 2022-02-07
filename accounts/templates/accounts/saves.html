@@ -1,0 +1,51 @@
+{% extends 'base/main.html' %}
+{% load static %}
+
+{% block content %}
+
+{% include 'base/navbar.html' %}
+<style>
+    .image-resize {
+        height: 201px;
+        object-fit: cover;
+    }
+
+    .saved a{
+        color: #000;
+    }
+</style>
+
+
+<section class="container py-5 mt-5">
+    <div class="dash-board text-center py-5">
+        <div class="container py-5">
+            <h1 class="mb-5">User Saved Recipes | {{user.username}}</h1>
+            <p class="lead">Welcome to your Profile, Here you can see your saved recipes, your meal plans and your favourites.</p>
+            
+        </div>
+    </div>
+</section>
+
+<div class="container saved">
+    <div class="row">
+        {% for recipe in saved_list %}
+        <div class="col-lg-3 py-3">
+            <a class="recipe-title" href="{% url 'recipeDetails' id=recipe.id%}">
+                <div class="card border mb-2" style="height: 24rem;">
+                    <img class="card-img-top border-bottom image-resize" src="{{recipe.image}}" alt="">
+                    <div class="card-body">
+                        <p class="recipe_category">#{{recipe.category}}</p>
+    
+                        <h6 class="mt-2 mb-3 recipe_title fw-bolder">{{ recipe.title }}</h6>
+                        <p class="mt-5">Recipe by: {{recipe.created_by}}</p>
+            </a>
+        </div>
+    </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+
+
+{% endblock content %}

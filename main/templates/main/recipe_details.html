@@ -74,9 +74,9 @@
                             <!-- save recipe button -->
                             <div class="save-recipe mt-5">
                                 {% if fav %} 
-                                <a href="#"><p class="lead"><i class="fas fa-bookmark me-2"></i>Recipe saved</p></a>
+                                <a href="{% url 'save_recipes' details.id %}"><p class="lead"><i class="fas fa-bookmark me-2"></i>Unsave recipe</p></a>
                                 {% else %}
-                                <a href="#"><p class="lead"><i class="far fa-bookmark me-2"></i> Save this Recipe</p></a>
+                                <a href="{% url 'save_recipes' details.id %}"><p class="lead"><i class="far fa-bookmark me-2"></i> Save this Recipe</p></a>
                                 {% endif %}
                             </div>
                     </div>

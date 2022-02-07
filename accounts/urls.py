@@ -22,6 +22,10 @@ urlpatterns = [
     path('profile/', views.profile , name='profile'),
     path('profile/edit/', views.edit_user , name='edit'),
 
+    #for user favourites/ saved recipes
+    path('save-recipe/<int:id>/', views.save_recipe, name='save_recipes'),
+    path('saved-recipes', views.saved_list , name='saved_list'),
+
     
 
 ]

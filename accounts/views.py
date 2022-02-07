@@ -1,11 +1,30 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
+from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required
 from . import forms
+from main.models import Recipes
 
 from .forms import RegistrationForm, UserDetailForm
 # Create your views here.
+
+
+# save recipes
+@login_required
+def save_recipe(request, id):
+    recipe = get_object_or_404(Recipes, id=id)
+    if recipe.favourites.filter(id=request.user.id).exists():
+        recipe.favourites.remove(request.user)
+    else:
+        recipe.favourites.add(request.user)
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+
+@login_required
+def saved_list(request):
+    saved_list = Recipes.objects.filter(favourites=request.user)
+    return render(request, 'accounts/saves.html', {'saved_list': saved_list})
 
 
 @login_required
