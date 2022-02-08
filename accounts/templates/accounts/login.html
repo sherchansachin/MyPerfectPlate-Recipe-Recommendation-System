@@ -6,12 +6,12 @@
 {% include 'base/navbar.html' %}
 
 
-<div class="container mt-4">
+<div class="container">
         <div class="login-wrap">
             <form class="login-form" method="post">
                 {% csrf_token %}
                 <div class=" text-center mt-4">
-                    <img src="{% static 'image/logo2.svg' %}" alt="logo" class="logo_img mx-auto mt-5">
+                    <img src="{% static 'image/logo2.svg' %}" alt="logo" class="logo_img mx-auto mt-2">
                 </div>
 
                 <h2 class="mb-4 mt-4 ">Log In to Your Account</h2>
