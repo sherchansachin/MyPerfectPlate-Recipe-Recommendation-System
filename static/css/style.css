@@ -3,6 +3,9 @@
 font-family: 'Lato', sans-serif;
 font-family: 'Inter', sans-serif;
 */
+* {
+  box-sizing: border-box;
+}
 
 body {
   Font-Family: 'Nunito', Sans-Serif;
@@ -115,6 +118,7 @@ a{
     }
 }
 
+
 .search-bar{
   background: #fff;
   box-shadow: 0 0 0.4rem rgb(0 0 0 / 10%);
@@ -156,14 +160,17 @@ a{
     }
     
   }
-
+/* 
   .back{
     background: url(../image/home-bg.jpg) no-repeat;
     background-size: cover;
     justify-content: center;
   }
+   */
   
-  
+  .input-box{
+    height: 46px;
+  }
 
 
   .login-wrap{
