@@ -45,6 +45,7 @@ def recipe_details(request, id):
     '''
     details = get_object_or_404(Recipes, pk=id)
 
+    # check if the particular recipe is saved by a user or not
     fav = bool
 
     if details.favourites.filter(id=request.user.id).exists():

@@ -274,3 +274,39 @@ a{
   .details{
     margin-top: 60px;
   }
+
+   
+  /* search */
+
+  .searchrecipes{
+    /* maybe F9F8F9 */
+    background: #F9F8F9;
+  }
+
+  .searchrecipes a{
+    color: #000!important;
+  }
+
+  .search {
+    position: relative;
+    
+}
+
+.search-box{
+  margin-top: 50px;
+}
+
+.search input {
+    height: 55px;
+    text-indent: 35px;
+}
+
+.search input:focus {
+    box-shadow: none;
+}
+
+.search .fa-search {
+    position: absolute;
+    top: 19px;
+    left: 16px;
+}

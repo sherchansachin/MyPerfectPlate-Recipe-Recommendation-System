@@ -1,0 +1,81 @@
+{% extends 'base/main.html' %}
+{% load static %}
+{% block content %}
+
+{% include 'base/navbar.html' %}
+
+<style>
+    .image-resize {
+        height: 290px;
+        object-fit: cover;
+    }
+</style>
+
+
+<!-- search bar here -->
+<div class="search-box py-5">
+    <div class="container">
+        <form method="GET" action="{% url 'search' %}">
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-md-6">
+                    <div class="search"> <i class="fa fa-search me-5"></i> 
+                        <input type="text" class="form-control" name="q" placeholder="Find a Recipe">  </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+    {% if recipes %}
+
+
+    <section class="searchrecipes py-5">
+   
+        <div class="container">
+            <div class="title-wrap d-flex justify-content-between mb-2">
+                <p class="fw-light">Got {{count_search}} matching results related to <span class="fst-italic">"{{query}}"</span> </p>
+                <!-- <p class="mt-1"><span class="fw-bold">{{recipe_count}}</span> recipes found</p> -->
+            </div>
+           
+            <div class="row">
+                {% for recipe in recipes %}
+                <div class="col-lg-3 py-3">
+                    <a class="recipe-title" href="{% url 'recipeDetails' id=recipe.id%}">
+                        <div class="card border mb-2" style="height: 29rem;">
+                            <img class="card-img-top border-bottom image-resize" src="{{recipe.image}}" alt="">
+                            <div class="card-body">
+                                <p class="recipe_category">#{{recipe.category}}</p>
+    
+                                <h6 class="mt-2 mb-3 recipe_title fw-bolder">{{ recipe.title }}</h6>
+                                <p class="mt-5">Recipe by: {{recipe.created_by}}</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        </div>
+    </section>
+
+    {% else %}
+
+    <div class="container py-5">
+        <p>No Recipes found </p>
+    </div>
+    
+
+    {% endif %}
+</div>
+
+
+
+
+
+
+
+
+
+
+
+{% endblock content %}
