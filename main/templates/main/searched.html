@@ -1,7 +1,7 @@
 {% extends 'base/main.html' %}
 {% load static %}
 {% block content %}
-
+{% load static %}
 {% include 'base/navbar.html' %}
 
 <style>
@@ -32,7 +32,6 @@
 
 
     <section class="searchrecipes py-5">
-   
         <div class="container">
             <div class="title-wrap d-flex justify-content-between mb-2">
                 <p class="fw-light">Got {{count_search}} matching results related to <span class="fst-italic">"{{query}}"</span> </p>
@@ -59,10 +58,35 @@
     </section>
 
     {% else %}
+    <section class="searchrecipes py-5">
+        <div class="container">
+            <p>Got 0 matching results related to <span class="fst-italic">"{{query}}"</span>  </p>
+            <div class="searchopt mt-5 p-5 text-center">
+                <h3>We searched all over but didn't find a recipe for "{{query}}"</h3>
+                <p class=" mt-4">Try to search again with these tips</p>
+            </div>
+            <div class="row justify-content-center text-center">
+                <div class="col-md-3">
+                    <div class="box mt-4">
+                        <div class="tryicon">
+                        <img src="{% static 'image/correct.svg' %}" alt="check if spelling is wrong? icon">
+                        <p class="fw-bold p-4">Check if the spelling is wrong?</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="box mt-4">
+                        <div class="tryicon">
+                        <img src="{% static 'image/keyword.svg' %}" alt="check if spelling is wrong? icon">
+                        <p class="fw-bold p-4">Try searching with other keywords</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <div class="container py-5">
-        <p>No Recipes found </p>
-    </div>
+    </section>
+       
     
 
     {% endif %}
