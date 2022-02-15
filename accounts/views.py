@@ -24,7 +24,8 @@ def save_recipe(request, id):
 @login_required
 def saved_list(request):
     saved_list = Recipes.objects.filter(favourites=request.user)
-    return render(request, 'accounts/saves.html', {'saved_list': saved_list})
+    save_count = saved_list.count()
+    return render(request, 'accounts/saves.html', {'saved_list': saved_list, 'save_count': save_count})
 
 
 @login_required

@@ -10,40 +10,54 @@
         object-fit: cover;
     }
 
-    .saved a{
+    .icon-resize{
+        margin-top: 10rem;
+        height: 70px;
+    }
+    .saved a {
         color: #000;
     }
 </style>
 
 
-<section class="container py-5 mt-5">
-    <div class="dash-board text-center py-2">
-        <div class="container py-5">
-            <h1 class="mb-5">User Saved Recipes | {{user.username}}</h1>
-            <p class="lead">Welcome to your Saved profile, Here you can see your saved recipes and cook them.</p>
-            
+<section class="saves p-4 mt-5">
+    <div class="container">
+        <div class="dash-board text-center py-2">
+            <div class="py-5">
+                <h1 class="mb-5"><i class="far fa-bookmark me-3"></i>Saved Recipes</h1>
+                <p class="lead">Find all of your saved recipes here. According to us, you currently have<span class="fw-bold"> {{save_count}} saved recipes!</span> </p>
+            </div>
         </div>
     </div>
 </section>
 
-<div class="container saved">
+<div class="saved py-5">
+<div class="container mt-4">
     <div class="row">
+        <div class="col-lg-3 col-md-3 py-3">
+            <a class="recipe-title" href="{% url 'recipes' %}">
+                <div class="card border mb-2" style="height: 29rem;">
+                <div class="card-body text-center">
+                <img class="icon-resize" src="{% static 'image/discover.svg' %}" alt="">
+                <p class="mt-4 mb-3 fs-4 recipe_title fw-bolder"> DISCOVER<br> RECIPES</p>
+                <p class="mt-5">And save them as you wish!</p>
+            </a></div></div>
+        </div>
         {% for recipe in saved_list %}
-        <div class="col-lg-3 py-3">
+        <div class="col-lg-3 col-md-3 py-3">
             <a class="recipe-title" href="{% url 'recipeDetails' id=recipe.id%}">
                 <div class="card border mb-2" style="height: 29rem;">
-                    <img class="card-img-top border-bottom image-resize" src="{{recipe.image}}" alt="">
-                    <div class="card-body">
-                        <p class="recipe_category">#{{recipe.category}}</p>
-    
-                        <h6 class="mt-2 mb-3 recipe_title fw-bolder">{{ recipe.title }}</h6>
-                        <p class="mt-5">Recipe by: {{recipe.created_by}}</p>
+                <img class="card-img-top border-bottom image-resize" src="{{recipe.image}}" alt="">
+                <div class="card-body">
+                <p class="recipe_category">#{{recipe.category}}</p>
+                <h6 class="mt-2 mb-3 recipe_title fw-bolder">{{ recipe.title }}</h6>
+                <p class="mt-5">Recipe by: {{recipe.created_by}}</p>
             </a>
         </div>
     </div>
-    </div>
-    {% endfor %}
 </div>
+
+{% endfor %}
 
 
 

@@ -317,3 +317,7 @@ a{
   height: 75px;
   width: 75px;
 }
+
+.saved{
+  border-top: 3px solid #3d7ca7;
+}
