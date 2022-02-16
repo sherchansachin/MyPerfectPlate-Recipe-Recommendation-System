@@ -28,7 +28,8 @@ class Recipes(models.Model):
     pro = models.TextField(default='')
     created_by = models.CharField(max_length=250, default='')
     favourites = models.ManyToManyField(User, related_name='favourites', default=None, blank=True)
-
+    recently_viewed = models.DateTimeField(blank=True, null=True)
+    
     def __str__(self):
         return self.title
 

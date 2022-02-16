@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from datetime import datetime
 from .models import Category, Recipes
 # Create your views here.
 
@@ -18,10 +19,13 @@ def recipes(request):
     recipe_count = Recipes.objects.count()
     categories = Category.objects.all()
 
+    # get the top 4 recently viewed recipes
+    recently_viewed = Recipes.objects.all().order_by('-recently_viewed')[0:4]
 
     return render(request, "main/recipes.html", {"all_recipes": all_recipes,
                                                 "recipe_count": recipe_count,
-                                                "categories": categories    
+                                                "categories": categories ,
+                                                "recently_viewed"   : recently_viewed
                                                 })
 
 
@@ -44,6 +48,10 @@ def recipe_details(request, id):
     this function based view shows the detail information of a particular recipe
     '''
     details = get_object_or_404(Recipes, pk=id)
+
+    # capture the dateandtime for recently viewed recipes
+    details.recently_viewed = datetime.now()
+    details.save()
 
     # check if the particular recipe is saved by a user or not
     fav = bool

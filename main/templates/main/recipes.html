@@ -8,6 +8,10 @@
         height: 210px;
         object-fit: cover;
     }
+
+    .recent a{
+      color: #000;
+    }
 </style>
 
             
@@ -45,21 +49,38 @@
            </a>
           {% endfor %}
         </div>
-  </div>
     </div>
-    
-  
+  </div>
 </div>
+
+<!-- top 4 recently viewed recipes -->
+<section class="recent py-4">
+  <div class="container">
+    <div class="row">
+      {% for recipe in recently_viewed %}
+      <div class="col-lg-3 py-3">
+          <a class="recipe-title" href="{% url 'recipeDetails' id=recipe.id%}">
+              <div class="card border-dark mb-2" style="height: 24rem;">
+                  <img class="card-img-top border-bottom image-resize" src="{{recipe.image}}" alt="">
+                  <div class="card-body">
+                      <p class="recipe_category">#{{recipe.category}}</p>
+                      <h6 class="mt-2 mb-3 recipe_title fw-bolder">{{ recipe.title }}</h6>
+                      <p class="mt-5">Recipe by: {{recipe.created_by}}</p>
+          </a>
+      </div>
+  </div>
+</div>
+{% endfor %}
+  </div>
+</section>
 
             
 <section class="allrecipes py-5">
-   
     <div class="container">
         <div class="title-wrap d-flex justify-content-between mb-2">
             <h4 class="all_title">All Recipes</h4>
             <p class="mt-1"><span class="fw-bold">{{recipe_count}}</span> recipes found</p>
         </div>
-       
         <div class="row">
             {% for recipe in all_recipes %}
             <div class="col-lg-3 py-3">
@@ -68,7 +89,6 @@
                         <img class="card-img-top border-bottom image-resize" src="{{recipe.image}}" alt="">
                         <div class="card-body">
                             <p class="recipe_category">#{{recipe.category}}</p>
-
                             <h6 class="mt-2 mb-3 recipe_title fw-bolder">{{ recipe.title }}</h6>
                             <p class="mt-5">Recipe by: {{recipe.created_by}}</p>
                 </a>
