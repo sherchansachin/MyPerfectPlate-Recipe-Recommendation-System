@@ -5,7 +5,7 @@
 {% include 'base/navbar.html' %}
 <style>
     .image-resize {
-        height: 290px;
+        height: 210px;
         object-fit: cover;
     }
 </style>
@@ -64,7 +64,7 @@
             {% for recipe in all_recipes %}
             <div class="col-lg-3 py-3">
                 <a class="recipe-title" href="{% url 'recipeDetails' id=recipe.id%}">
-                    <div class="card border mb-2" style="height: 29rem;">
+                    <div class="card border-dark mb-2" style="height: 24rem;">
                         <img class="card-img-top border-bottom image-resize" src="{{recipe.image}}" alt="">
                         <div class="card-body">
                             <p class="recipe_category">#{{recipe.category}}</p>

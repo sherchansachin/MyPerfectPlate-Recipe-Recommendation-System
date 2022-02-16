@@ -36,7 +36,7 @@
     <div class="row">
         <div class="col-lg-3 col-md-3 py-3">
             <a class="recipe-title" href="{% url 'recipes' %}">
-                <div class="card border mb-2" style="height: 29rem;">
+                <div class="card border-dark mb-2" style="height: 29rem;">
                 <div class="card-body text-center">
                 <img class="icon-resize" src="{% static 'image/discover.svg' %}" alt="">
                 <p class="mt-4 mb-3 fs-4 recipe_title fw-bolder"> DISCOVER<br> RECIPES</p>
@@ -46,7 +46,7 @@
         {% for recipe in saved_list %}
         <div class="col-lg-3 col-md-3 py-3">
             <a class="recipe-title" href="{% url 'recipeDetails' id=recipe.id%}">
-                <div class="card border mb-2" style="height: 29rem;">
+                <div class="card border-dark mb-2" style="height: 29rem;">
                 <img class="card-img-top border-bottom image-resize" src="{{recipe.image}}" alt="">
                 <div class="card-body">
                 <p class="recipe_category">#{{recipe.category}}</p>

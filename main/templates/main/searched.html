@@ -6,7 +6,7 @@
 
 <style>
     .image-resize {
-        height: 290px;
+        height: 210px;
         object-fit: cover;
     }
 </style>
@@ -34,7 +34,7 @@
     <section class="searchrecipes py-5">
         <div class="container">
             <div class="title-wrap d-flex justify-content-between mb-2">
-                <p class="fw-light">Got {{count_search}} matching results related to <span class="fst-italic">"{{query}}"</span> </p>
+                <p class="fw-light">Got {{count_search}} matching results related to <span class="fst-italic fw-bold">"{{query}}"</span> </p>
                 <!-- <p class="mt-1"><span class="fw-bold">{{recipe_count}}</span> recipes found</p> -->
             </div>
            
@@ -42,7 +42,7 @@
                 {% for recipe in recipes %}
                 <div class="col-lg-3 py-3">
                     <a class="recipe-title" href="{% url 'recipeDetails' id=recipe.id%}">
-                        <div class="card border mb-2" style="height: 29rem;">
+                        <div class="card border-dark mb-2" style="height: 24rem;">
                             <img class="card-img-top border-bottom image-resize" src="{{recipe.image}}" alt="">
                             <div class="card-body">
                                 <p class="recipe_category">#{{recipe.category}}</p>

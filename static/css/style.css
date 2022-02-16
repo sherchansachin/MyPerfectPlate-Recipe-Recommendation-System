@@ -227,9 +227,16 @@ a{
   .allrecipes .card:hover {
     transform: scale(1.04);
     border: 10px solid;
-    border-image-slice: 1;
-    border-width: 2px;
-    box-shadow: 6px 6px 0px 0px #26B7C5;
+    border-width: 1px;
+    box-shadow: 7px 7px 0px 0px #26B7C5;
+    transition: all 0.2s;
+  }
+
+  .searchrecipes .card:hover {
+    transform: scale(1.04);
+    border: 10px solid;
+    border-width: 1px;
+    box-shadow: 7px 7px 0px 0px #26B7C5;
     transition: all 0.2s;
   }
 
@@ -279,8 +286,8 @@ a{
   /* search */
 
   .searchrecipes{
-    /* maybe F9F8F9 */
-    background: #F9F8F9;
+    background: #FAF8EE;
+    border-top: 0.1px solid #3d7ca7;
   }
 
   .searchrecipes a{
@@ -319,5 +326,6 @@ a{
 }
 
 .saved{
-  border-top: 3px solid #3d7ca7;
+  border-top: 4px solid #3d7ca7;
+  background-color: #F9F8F9;
 }
