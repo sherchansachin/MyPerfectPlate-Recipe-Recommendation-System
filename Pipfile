@@ -10,6 +10,7 @@ django-crispy-forms = "*"
 python-decouple = "*"
 django-extensions = "*"
 django-autoslug = "*"
+pillow = "*"
 
 [dev-packages]
 
