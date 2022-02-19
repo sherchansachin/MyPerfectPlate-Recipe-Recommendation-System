@@ -12,6 +12,7 @@
     .recent a{
       color: #000;
     }
+    
 </style>
 
             
@@ -58,7 +59,7 @@
   <div class="container">
     <div class="row">
       {% for recipe in recently_viewed %}
-      <div class="col-lg-3 py-3">
+      <div class="col-lg-3 col-md-6 py-3">
           <a class="recipe-title" href="{% url 'recipeDetails' id=recipe.id%}">
               <div class="card border-dark mb-2" style="height: 24rem;">
                   <img class="card-img-top border-bottom image-resize" src="{{recipe.image}}" alt="">
@@ -83,7 +84,7 @@
         </div>
         <div class="row">
             {% for recipe in all_recipes %}
-            <div class="col-lg-3 py-3">
+            <div class="col-lg-3 col-md-6 py-3">
                 <a class="recipe-title" href="{% url 'recipeDetails' id=recipe.id%}">
                     <div class="card border-dark mb-2" style="height: 24rem;">
                         <img class="card-img-top border-bottom image-resize" src="{{recipe.image}}" alt="">
@@ -97,8 +98,59 @@
     </div>
     {% endfor %}
     </div>
+
+
+<!-- Pagination -->
+<nav aria-label="Page navigation example">
+  {% if all_recipes.has_other_pages %}
+  <ul class="mt-4 mb-4 pagination justify-content-center">
+    <!-- conditional to show whether the previous button should be activated or passive  -->
+    {% if all_recipes.has_previous %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ all_recipes.previous_page_number }}" aria-label="Previous">
+        <span aria-hidden="true">Previous</span>
+      </a>
+    </li>
+    {% else %}
+    <li class="page-item disabled">
+      <a class="page-link" href="" aria-label="Previous">
+        <span>Previous</span>
+      </a>
+    </li>
+    {% endif %}
+    {% for page in all_recipes.paginator.page_range %}
+    {% if all_recipes.number == page %}
+    <li class="page-item active">
+      <a class="page-link" href="{{ page }}">
+        {{ page }}
+      </a>
+    </li>
+    {% else %}
+    <li class="page-item"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
+    {% endif %}
+    {% endfor %}
+    <!-- conditional to display whether the next button should be activated or passive  -->
+    {% if all_recipes.has_next %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ all_recipes.next_page_number }}" aria-label="Next">
+        <span aria-hidden="true">Next</span>
+      </a>
+    </li>
+    {% else %}
+    <li class="page-item disabled">
+      <a class="page-link" href="" aria-label="Next">
+        <span>Next</span>
+      </a>
+    </li>
+    {% endif %}
+  </ul>
+  {% endif %}
+</nav>
+</div>
+
 </section>
         
+
             
 
 

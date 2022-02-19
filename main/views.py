@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from datetime import datetime
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from .models import Category, Recipes
 # Create your views here.
 
@@ -21,6 +22,19 @@ def recipes(request):
 
     # get the top 4 recently viewed recipes
     recently_viewed = Recipes.objects.all().order_by('-recently_viewed')[0:4]
+
+    # paginator
+    paginator = Paginator(all_recipes, 20)
+    page_num = request.GET.get('page', 1)
+
+    try:
+        all_recipes = paginator.page(page_num)
+
+    except PageNotAnInteger:
+        all_recipes = paginator.page(1)
+        
+    except EmptyPage:
+        all_recipes = paginator.page(paginator.num_pages)
 
     return render(request, "main/recipes.html", {"all_recipes": all_recipes,
                                                 "recipe_count": recipe_count,
