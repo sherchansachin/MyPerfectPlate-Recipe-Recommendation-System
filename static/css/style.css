@@ -225,11 +225,11 @@ a{
   }
 
   .allrecipes .card:hover {
-    transform: scale(1.04);
+    transform: scale(1.03);
     border: 10px solid;
     border-width: 1px;
     box-shadow: 7px 7px 0px 0px #26B7C5;
-    transition: all 0.2s;
+    transition: all 0.3s;
   }
 
   .searchrecipes .card:hover {
@@ -237,7 +237,7 @@ a{
     border: 10px solid;
     border-width: 1px;
     box-shadow: 7px 7px 0px 0px #26B7C5;
-    transition: all 0.2s;
+    transition: all 0.3s;
   }
 
   .top-heading{
@@ -275,6 +275,13 @@ a{
     text-decoration: none;
     color: #388cda;
   }
+
+  .page-item.active .page-link{
+    background-color: rgb(130, 217, 247)!important;
+    border-color: #68d3f7!important;
+  }
+
+  
 
   /* recipe details */
 
@@ -327,5 +334,23 @@ a{
 
 .saved{
   border-top: 4px solid #3d7ca7;
-  background-color: #F9F8F9;
+  background-color: #FAF8EE;
+}
+
+/* profile */
+
+.card .profile-cover{
+  height: 210px;
+  background-image: url('/static/image/profilebg.jpg');
+
+}
+
+.user-avatar.large-avatar{
+  border: 2px solid rgb(153, 153, 153);
+  height: 12rem;
+  width: 12rem;
+  min-height: 12rem;
+  min-width: 12rem;
+  object-fit: cover;
+  margin-top: -6rem!important;
 }
