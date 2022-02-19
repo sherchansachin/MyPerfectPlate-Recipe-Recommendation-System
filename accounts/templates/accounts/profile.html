@@ -1,19 +1,82 @@
 {% extends 'base/main.html' %}
 {% load static %}
-
+{% load crispy_forms_tags %}
 {% block content %}
 
 {% include 'base/navbar.html' %}
 
+<style>
 
-<section class="container py-5 mt-5">
-    <div class="dash-board text-center py-5">
-        <div class="container py-5">
-            <h1 class="mb-5">User Profile | {{user.username}}</h1>
-            <p class="lead">Welcome to your Profile, Here you can see your saved recipes, your meal plans and your favourites.</p>
-            
+    .plannerlink{
+      color: #000;
+      text-decoration: underline;
+    }
+
+    .plannerlink:hover{
+      color: #000;
+      text-decoration: none;
+    }
+    
+    .user-icon{
+        color: #1B4C7B;
+    }
+
+</style>
+
+
+<section class="container py-5">
+    <div class="dash-board text-center py-5 mt-5">
+        <div class="container">
+            <h1 class="mb-5"><i class="fa-regular fa-circle-user user-icon fw-light me-3"></i>User Profile</h1>
+            <p class="lead">Welcome to your profile, here you can see your profile info, and update as necessary.</p>
         </div>
     </div>
+</section>
+
+
+<section >
+    <div class="container">
+        <div class="row ">
+            <div class="col-md-4">
+                <div class="card border text-center p-0">
+                    <div class="profile-cover rounded-top"></div>
+                    <div class="card-body pb-2">
+                        <img src="{{ user.profile.profile_img.url }}"
+                             class="user-avatar large-avatar rounded-circle mx-auto mt-n7 mb-2"
+                             alt="Profile Picture Image">
+                             <hr>
+                        <p class="fs-3 fw-bold ">Username: {{ user.username }}</p>
+                        <p class="text-gray mt-3 ">Email: {{ user.email }}</p>
+                        <p><a class="plannerlink" href="#"><i class="fa-solid fa-calendar-day me-2"></i>See Meal Planner</a></p>
+                    </div>
+                </div>
+            </div><div class="col-md-1"></div>
+
+            <div class="col-md-6">
+                {% if messages %}
+                  {% for message in messages%}
+                  <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{message}}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                  {% endfor %}
+                {% endif %}
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <fieldset class="form-group mt-4">
+                        <h4 class="mb-4">Update Profile Info</h4>
+                        {{ uuser_form|crispy }}
+                        {{ p_form|crispy }}
+                    </fieldset>
+                    <div class="form-group">
+                        <button class="btn btn-primary mt-3" type="submit">Update</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    
 </section>
 
 

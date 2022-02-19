@@ -1,12 +1,15 @@
+from multiprocessing import context
 from django.shortcuts import redirect, render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages, auth
 from django.contrib.auth.decorators import login_required
+
+from accounts.models import Profile
 from . import forms
 from main.models import Recipes
 
-from .forms import RegistrationForm, UserDetailForm
+from .forms import RegistrationForm, UserDetailForm, UserUpdateForm, ProfileUpdateForm
 # Create your views here.
 
 
@@ -30,7 +33,28 @@ def saved_list(request):
 
 @login_required
 def profile(request):
-    return render(request, 'accounts/profile.html')
+
+    if request.method == 'POST':
+        # instances of form
+        uuser_form = UserUpdateForm(request.POST, instance=request.user)
+        p_form = ProfileUpdateForm(request.POST, request.FILES,  instance=request.user.profile)
+
+        if uuser_form.is_valid() and p_form.is_valid():
+            uuser_form.save()
+            p_form.save()
+            messages.success(request, f'Your account information has been updated!')
+            # post, get, redirect pattern
+            return redirect('profile')
+    else:
+        
+        uuser_form = UserUpdateForm(instance=request.user)
+        p_form = ProfileUpdateForm(instance=request.user.profile)
+
+    context = {
+        'uuser_form': uuser_form,
+        'p_form': p_form
+    }
+    return render(request, 'accounts/profile.html', context)
 
 
 @login_required
