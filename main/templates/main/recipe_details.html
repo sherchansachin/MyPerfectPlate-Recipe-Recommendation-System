@@ -71,14 +71,16 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- save recipe button -->
-                            <div class="save-recipe mt-5">
-                                {% if fav %} 
-                                <a href="{% url 'save_recipes' details.id %}"><p class="lead"><i class="fas fa-bookmark me-2"></i>Unsave recipe</p></a>
-                                {% else %}
-                                <a href="{% url 'save_recipes' details.id %}"><p class="lead"><i class="far fa-bookmark me-2"></i> Save this Recipe</p></a>
-                                {% endif %}
-                            </div>
+                           <!-- save recipe button -->
+                           <div class="save-recipe mt-5 title-wrap d-flex justify-content-between mb-2">
+                            {% if fav %} 
+                            <a href="{% url 'save_recipes' details.id %}"><p class="lead"><i class="fas fa-bookmark me-2"></i>Unsave recipe</p></a>
+                            {% else %}
+                            <a href="{% url 'save_recipes' details.id %}"><p class="lead"><i class="far fa-bookmark me-2"></i> Save this Recipe</p></a>
+                            {% endif %}
+                            <!-- add to meal planner -->
+                            <a href="{% url 'save_plan' details.id %}"><p class="lead"><i class="fa-regular fa-calendar-check me-3"></i>Add To Meal Planner</p></a>
+                        </div>
                     </div>
                 </div>
             </div>

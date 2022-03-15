@@ -1,0 +1,137 @@
+{% extends 'base/main.html' %}
+{% load static %}
+{% block content %}
+
+{% include 'base/navbar.html' %}
+
+
+
+<section class="recipes mt-5">
+    <div class="container">
+        <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-start">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item fw-bold"><a href="{{request.META.HTTP_REFERER}}" class="crumbs"> <i class="fas fa-arrow-left me-1"></i>Back to {{recipe.title}}</a></li>
+              </ol>
+            </nav>
+          </div>
+</section>
+
+<section>
+    <div class="container p-3">
+        <h2 class="mt-4 mb-3"> <i class="fa-solid fa-calendar-day me-3"></i>Create your Meal Plans</h2>
+        <p class="mb-4">Once you've selected the recipe, specify the day of the week to create your meal plans!</p>
+        <div class="row">
+            <div class="col-md-5">
+                <div class="card mt-4">
+                    <form action="" method="POST">
+                        {% csrf_token %}
+
+                        <div class="form-group m-4">
+                            <label class="fw-bold mb-1">Select a day to save this recipe:</label>
+                            <select name="day" class="form-select" required="true">
+                                <option value="">Select a day...</option>
+                                {% for d in days %}
+                                <option value="{{d.id}}">{{d.days}}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        
+                        <div class="form-group m-4">
+                            <label for="disabledTextInput" class="form-label mb-1 fw-bold">Recipe Name</label>
+                            <input class="form-control" id="disabledInput" type="text" placeholder="{{recipe.title}}" disabled>
+                        </div>
+
+                        <div class="row m-3">
+                            <div class="col-6">
+                                <div class="form-group ">
+                                    <label for="disabledTextInput" class="form-label">Preparation Time</label>
+                                    <input class="form-control" id="disabledInput" type="text" placeholder="{{recipe.preptime}}" disabled>
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="form-group ">
+                                    <label for="disabledTextInput" class="form-label">Recipe Category</label>
+                                    <input class="form-control" id="disabledInput" type="text" placeholder="{{recipe.category}}" disabled>
+                                </div>
+                            </div>
+                        </div>
+
+
+                     
+
+                        
+
+                        <button type="submit" class="btn btn-primary m-4">Add to Meal Plan</button>
+                        
+                        <hr/>
+                        <p class="lead m-4">Nurtitional info for <mark> {{recipe.title}}</mark></p>
+                        <div class="row m-3">
+                            <div class="col-4">
+                                <div class="form-group ">
+                                    <label for="disabledTextInput" class="form-label">Calories</label>
+                                    <input class="form-control" id="disabledInput" type="text" placeholder="{{recipe.calories}}" disabled>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group ">
+                                    <label for="disabledTextInput" class="form-label">Carbohydrate</label>
+                                    <input class="form-control" id="disabledInput" type="text" placeholder="{{recipe.carbs}}" disabled>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group ">
+                                    <label for="disabledTextInput" class="form-label">Proteins</label>
+                                    <input class="form-control" id="disabledInput" type="text" placeholder="{{recipe.pro}}" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row m-3">
+                            <div class="col-4">
+                                <div class="form-group ">
+                                    <label for="disabledTextInput" class="form-label">Sodium</label>
+                                    <input class="form-control" id="disabledInput" type="text" placeholder="{{recipe.sod}}" disabled>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group ">
+                                    <label for="disabledTextInput" class="form-label">Cholestrol</label>
+                                    <input class="form-control" id="disabledInput" type="text" placeholder="{{recipe.cho}}" disabled>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="form-group ">
+                                    <label for="disabledTextInput" class="form-label">Fat</label>
+                                    <input class="form-control" id="disabledInput" type="text" placeholder="{{recipe.fat}}" disabled>
+                                </div>
+                            </div>
+                        </div>
+                       
+
+                       
+
+
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <img src="{{recipe.image}}" class="img-fluid mt-4 ms-4" alt="">
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock content %}

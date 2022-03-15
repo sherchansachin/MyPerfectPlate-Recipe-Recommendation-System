@@ -34,6 +34,32 @@ a{
     margin-right: 28px;
   }
 
+
+  .dropdown-menu::before {
+    border-bottom: 9px solid rgba(0, 0, 0, 0.2);
+    border-left: 9px solid rgba(0, 0, 0, 0);
+    border-right: 9px solid rgba(0, 0, 0, 0);
+    content: "";
+    display: inline-block;
+    left: 5%; /* position */
+    position: absolute;
+    top: -8px;
+}
+
+.dropdown-menu::after {
+    border-bottom: 8px solid #FFFFFF;
+    border-left: 9px solid rgba(0, 0, 0, 0);
+    border-right: 9px solid rgba(0, 0, 0, 0);
+    content: "";
+    display: inline-block;
+    left: 5%; /* position */
+    position: absolute;
+    top: -7px;
+}
+
+.navbar .dropdown-menu {
+  border-top: 3px solid #004AAD;
+}
  
   
   .navbar .nav-link:hover,
@@ -353,4 +379,14 @@ a{
   min-width: 12rem;
   object-fit: cover;
   margin-top: -6rem!important;
+}
+
+
+/* meal planner */
+@media (max-width: 768px) {  
+  .build-text{
+    margin-top: 2rem;
+    font-size: 38px;
+  }
+  
 }

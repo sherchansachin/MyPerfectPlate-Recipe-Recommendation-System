@@ -4,19 +4,124 @@
 
 {% include 'base/navbar.html' %}
 
+<style>
+  .link_days a{
+      color: #000;
+    }
 
-<section class="recipes mt-5">
-    <div class="container py-5">
-        <div class="row">
-          <div class="col-md-12 col-lg-8">
-            <div class="top-heading">
-              <h1 class="info mb-4">Meal Planner</h1>
-              <p>Organize your meals on a weekly basis with My Perfect Plate, create your very own meal plan just for you.</p>
-            </div>
-            </div>
+    .list-group-hover .list-group-item:hover {
+    background-color: #f5f5f5;
+    }
+
+    .mealplans .icon{
+      margin-bottom: 20px;
+    }
+
+    .mealplans .icon-box {
+      padding: 30px;
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 0 29px 0 rgba(37, 37, 37, 0.12);
+      border-radius: 8px;
+      z-index: 1;
+    }
+
+    .mealplans .icon i {
+      font-size: 40px;
+      line-height: 1;
+      color: #1B4C7B;
+    }
+
+    .plan-img{
+      -ms-transform: rotate(20deg); 
+      transform: rotate(1deg);
+    }
+
+    /* .build-text{
+      color: #1B4C7B;
+    } */
+
+  
+</style>
+
+
+
+
+ <section id="recipe mt-4" class="p-5">
+  <div class="container py-4">
+    <div class="row flex-lg-row-reverse align-items-center justify-content-between">
+      
+      <div class="col-md">
+        <img src="{% static 'image/mealplan.jpg' %}" class="img-fluid plan-img" alt="" />
+      </div>
+      <div class="col-md p-4">
+        <h1 class="build-text display-3 mb-4 mt-3">Build your <br>Meal Plan</h1>
+        <div class="col-md-10 text-justify">
+          <p>
+            Organize your meals on a weekly basis with My Perfect Plate. Create your very own meal plan just for you!
+          </p>
         </div>
+      
+          {% for day in days|slice:":1" %}
+              <a href="{% url 'filterdays' day.slug %}"  class="btn btn-light mt-3 " >See my plans <i class="fa-solid fs-6 fa-chevron-right ms-2"></i></a>
+            {% endfor %}
+           
+        </a>
+      </div>
     </div>
+  </div>
 </section>
+
+
+
+<section class="mealplans bg-light py-5">
+  <div class="container">
+      <div class="col-md-12 px-3 mt-4">
+          <h3 class="mb-5 fw-bold"><i class="fa-solid fa-play"></i> How to start your weekly meal plans?</h3>
+          
+          <div class="row">
+              <div class="col-lg-3 col-md-6 col-lg-3 mt-3 mb-lg-0">
+                <div class="icon-box mb-4 ">
+                  <div class="icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                  <h5 class="mb-3 mt-4">1. Discover Recipes</h5>
+                  <p>Head start your meal plans by exploring different recipes based on categories.</p>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-6 mt-3 mb-lg-0">
+                <div class="icon-box mb-4 ">
+                  <div class="icon"><i class="fa-regular fa-calendar-check"></i></div>
+                  <h5 class="mb-3 mt-4">2. Select the days</h5>
+                  <p>Once you've selected your desired recipes, add to meal planner by specifying a day.</p>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-6 mt-3 mb-lg-0">
+                <div class="icon-box mb-4 ">
+                  <div class="icon"><i class="fa-solid fa-utensils"></i></div>
+                  <h5 class="mb-3 mt-4">3. Explore your plans</h5>
+                  <p>After selecting the day, select which day's meal plan you wish to look for and explore.</p>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-md-6 mt-3 mb-lg-0">
+                <div class="icon-box mb-4 ">
+                  <div class="icon"><i class="fa-regular fa-note-sticky"></i></div>
+                  <h5 class="mb-3 mt-4">4. Add notes</h5>
+                  <p>Jot down some notes you have in your mind for the particular planned recipes day .</p>
+                </div>
+              </div>
+          </div>
+      </div>
+
+    
+  </div>
+</section>
+
+
+
 
 
 

@@ -1,0 +1,84 @@
+{% extends 'base/main.html' %}
+{% load static %}
+{% block content %}
+
+{% include 'base/navbar.html' %}
+
+<style>
+  .link_days a{
+      color: #000;
+    }
+
+    .list-group-hover .list-group-item:hover {
+    background-color: #f5f5f5;
+}
+  
+</style>
+
+
+<section class="recipes mt-5">
+    <div class="container py-5">
+        <div class="row">
+          <div class="col-md-12 col-lg-8">
+            <div class="top-heading">
+              <h1 class="info mb-4">My Meal Plan</h1>
+              <p>Organize your meals on a weekly basis with My Perfect Plate. Create your very own meal plan just for you.</p>
+            </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+  <div class="container">
+    <div class="row gx-5">
+      <div class="col-md-3">
+      
+          <h6 class="card-header link_days fw-bold p-3"> <a href="{% url 'planner' %}" >
+            <i class="fa-regular fa-square-check me-2"></i> Day-wise meal plan</a>
+          </h6>
+          <ol class="list-group list-group-hover list-group-numbered list-group-flush">
+            {% for day in days %}
+            <li class="list-group-item link_days p-3">
+              <a href="{% url 'filterdays' day.slug %}" >{{day.days}}</a> 
+            </li>
+            {% endfor %}
+          </ol>
+      </div>
+
+      <div class="col-md-9">
+        <h5 class="mb-5 mt-3 fw-bold">{{individual_day.days}}'s Meal Plans for {{ user.username }}</h5>
+          <div class="row">
+              <div class="col-md-4">
+                {% for recipe in recipe_list %}
+                <div class="card my-1">
+                    <img class="image-thumbail" src="{{recipe.image}}" alt="Card image cap">
+
+                    <div class="card-body">
+                        <h6>{{recipe.title}}</h6>
+                    </div>
+                    <a href="{% url 'recipeDetails' id=recipe.id%}" class="btn btn-outline-dark btn-sm m-1">View</a>
+                </div>
+                
+                
+                {% empty %}
+                <p>No meals planned for {{individual_day.days}}...</p>
+                {% endfor %}
+              </div>
+          </div>
+       
+  
+      </div>
+
+      
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+{% endblock content %}
