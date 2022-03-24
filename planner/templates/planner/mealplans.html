@@ -12,6 +12,31 @@
     .list-group-hover .list-group-item:hover {
     background-color: #f5f5f5;
 }
+
+.card{
+    border-radius: 1rem!important;
+    
+    text-align: center;
+}
+
+hr{
+  margin: -0.5rem 0;
+}
+
+.image-resize{
+  height: 280px;
+  object-fit: cover;
+}
+
+.active-box{
+  border-top: 2px solid #1B4C7B;
+}
+
+.bg{
+  color: #1B4C7B;
+  font-weight: 700; 
+}
+
   
 </style>
 
@@ -21,7 +46,7 @@
         <div class="row">
           <div class="col-md-12 col-lg-8">
             <div class="top-heading">
-              <h1 class="info mb-4">My Meal Plan</h1>
+              <h1 class="disply-4 mb-4">My Meal Plan</h1>
               <p>Organize your meals on a weekly basis with My Perfect Plate. Create your very own meal plan just for you.</p>
             </div>
             </div>
@@ -29,7 +54,57 @@
     </div>
 </section>
 
+
 <section>
+  <div class="container mt-4">
+    <h2><i class="fa-regular fa-calendar"></i> {% now "F" %}, {% now "Y" %}</h2>
+    <div class="row">
+      {% for day in days %}
+      <div class="col mt-4">
+        <div class="card {% if day.slug in request.path %} border-2 border-secondary {% endif %} pb-4">
+          <div class="card-title link_days mt-2">
+            <a href="{% url 'filterdays' day.slug %}" class="{% if day.slug in request.path %} active-box {% endif %} ">
+            <p class="{% if day.slug in request.path %} bg {% endif %}">Day {{day.id}}</p> 
+            <hr>
+          </div>   
+          <div class="card-body link_days  pt-5">
+            <h6 class="{% if day.slug in request.path %} bg {% endif %}">{{day.days}}</h6>
+          </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    
+  </div>
+</section>
+
+
+<section>
+  <div class="container">
+    <hr class="mt-5 mb-3">
+      <div class="row g-5">
+        <!-- <h4 class="mt-3">Plans for {{individual_day.days}} </h4> -->
+        {% for recipe in recipe_list %}
+        <div class="col-md-4 py-3">
+          <div class="card my-1">
+            <img class="image-resize" src="{{recipe.image}}" alt="Card image cap">
+            <div class="card-body">
+                <h6>{{recipe.title}}</h6>
+            </div>
+            <a href="{% url 'recipeDetails' id=recipe.id%}" class="btn btn-outline-dark btn-sm m-1">View</a>
+        </div>
+        </div>
+        {% empty %}
+        <h4>No meal plans added</h4>
+        {% endfor %}
+      </div>
+  </div>
+</section>
+
+
+
+<!-- <section>
   <div class="container">
     <div class="row gx-5">
       <div class="col-md-3">
@@ -73,7 +148,7 @@
       
     </div>
   </div>
-</section>
+</section> -->
 
 
 
