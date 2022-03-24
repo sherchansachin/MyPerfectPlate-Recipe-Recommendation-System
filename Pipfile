@@ -11,6 +11,7 @@ python-decouple = "*"
 django-extensions = "*"
 django-autoslug = "*"
 pillow = "*"
+django-active-link = "*"
 
 [dev-packages]
 
