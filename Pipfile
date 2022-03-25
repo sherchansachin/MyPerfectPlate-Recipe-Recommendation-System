@@ -12,6 +12,7 @@ django-extensions = "*"
 django-autoslug = "*"
 pillow = "*"
 django-active-link = "*"
+crispy-bootstrap5 = "*"
 
 [dev-packages]
 
