@@ -4,21 +4,22 @@
 
 {% include 'base/transparent-navbar.html' %}
 
+
 <section class="back">
-<div class="container col-10 py-2 hero">
+<div class="container home-back col-10 py-2 hero">
   <div class="row align-items-center g-lg-5 py-5">
-    <div class="col-lg-6 col-md-7 py-5">
+    <div class="col-lg-6  py-5">
       <h1 class="mb-2">Find your <br> <span>Perfect Recipes</span> </h1>
       <p class="py-3">MyPerfectPlate helps you find your favourite recipes based on your health and taste preferences! </p>
       <div class="search-bar rounded p-2">
          <!-- search bar  -->
          <form method="GET" action="{% url 'search' %}">
           <div class="row">
-            <div class="col-lg-10 col-md-7 d-flex align-items-center form-group">
+            <div class="col-lg-10 col-md-8 d-flex align-items-center form-group">
                 <i class="fas fa-search p-2"></i>
                 <input class="form-control border-0 shadow-0" type="search" name="q"  placeholder="I want to cook">
             </div>
-            <div class="col-lg-2 col-md-5 form-group mb-0">
+            <div class="col-lg-2 col-md-4 form-group mb-0">
                 <button class="btn btn-primary search-btn p-2 px-3 w-100 h-100" type="submit">Search</button>
             </div>
         </div>
@@ -26,7 +27,7 @@
       </div>
       <p class="form-text small mt-3">Search through over hunderds of recipes on My perfect plate</p>
     </div>
-    <div class="col-lg-6 col-md-5">
+    <div class="col-lg-6 ">
       <img src="{% static 'image/hero1.svg' %}" class="d-block mx-lg-auto img-fluid" alt="person cooking illustration" width="700" height="500" loading="lazy">
     </div>
   </div>

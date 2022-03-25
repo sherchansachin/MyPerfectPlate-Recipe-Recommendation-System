@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.views.generic import DetailView, ListView
 from main.models import Recipes
+from django.contrib import messages
 from planner.models import DaysName, MealPlan
 
 # Create your views here.
@@ -64,20 +65,24 @@ def save_plan(request,id):
     days = DaysName.objects.all()
 
     day= None
-    # get data and store to models
+    # get data (days selected) and store to models
     if request.method == 'POST':
         data = request.POST
 
-        if data['day'] != 'none':
-            day = DaysName.objects.get(id=data['day'])
-        else:
-            day = None
+        # see if duplicate entries
+        user_id = request.user.id
+        recipe_id = id
 
-        planned = MealPlan.objects.create(
-            day=day,
-            recipe=recipe,
-            user=request.user
-        )
+        if not MealPlan.objects.filter(user_id=user_id, recipe_id=recipe_id).exists():
+            if data['day'] != 'none':
+                day = DaysName.objects.get(id=data['day'])
+                planned = MealPlan.objects.create(
+                    day=day,
+                    recipe=recipe,
+                    user=request.user
+                )
+            else:
+                print("This meal plan is already for the particular day,")
 
     print('day:', day)
     

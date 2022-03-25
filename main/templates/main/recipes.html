@@ -4,38 +4,37 @@
 
 {% include 'base/navbar.html' %}
 <style>
-    .image-resize {
-        height: 210px;
-        object-fit: cover;
-    }
+  .image-resize {
+    height: 210px;
+    object-fit: cover;
+  }
 
-    .recent a{
-      color: #000;
-    }
-    
+  .recent a {
+    color: #000;
+  }
 </style>
 
-            
+
 <section class="recipes mt-5">
-    <div class="container py-5">
-        <div class="row">
-          <div class="col-md-12 col-lg-8">
-            <div class="top-heading">
-              <h1 class="info mb-3">Browse Recipes</h1>
-              <p>Get different recipes that are tested, tasted, and approved by My Perfect Plate to ensure
-                great results. Find inspirations or filters recipes by categories.</p>
-            </div>
-            </div>
-          <div class="col-md-12 col-lg-4 mt-5">
-            <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{% url 'home'%}">Home</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Recipes</li>
-              </ol>
-            </nav>
-          </div>
+  <div class="container py-5">
+    <div class="row">
+      <div class="col-md-12 col-lg-8">
+        <div class="top-heading">
+          <h1 class="info mb-3">Browse Recipes</h1>
+          <p>Get different recipes that are tested, tasted, and approved by My Perfect Plate to ensure
+            great results. Find inspirations or filters recipes by categories.</p>
         </div>
+      </div>
+      <div class="col-md-12 col-lg-4 mt-5">
+        <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home'%}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Recipes</li>
+          </ol>
+        </nav>
+      </div>
     </div>
+  </div>
 </section>
 
 <!-- filter -->
@@ -43,13 +42,13 @@
   <div class="row">
     <div class="col-lg-11">
       <h4><i class="fas fa-tag me-3" style="color: #3275A2;"></i>Recipes by categories</h4>
-          <div class="mt-4 mb-4">
-          {% for c in categories %}
-          <a href="{% url 'filterCategory' c.slug %}">
+      <div class="mt-4 mb-4">
+        {% for c in categories %}
+        <a href="{% url 'filterCategory' c.slug %}">
           <p class="d-inline pe-5 category-name fw-bold">{{c.main_category}}</p>
-           </a>
-          {% endfor %}
-        </div>
+        </a>
+        {% endfor %}
+      </div>
     </div>
   </div>
 </div>
@@ -60,101 +59,101 @@
     <div class="row">
       {% for recipe in recently_viewed %}
       <div class="col-lg-3 col-md-6 py-3">
-          <a class="recipe-title" href="{% url 'recipeDetails' id=recipe.id%}">
-              <div class="card border-dark mb-2" style="height: 24rem;">
-                  <img class="card-img-top border-bottom image-resize" src="{{recipe.image}}" alt="">
-                  <div class="card-body">
-                      <p class="recipe_category">#{{recipe.category}}</p>
-                      <h6 class="mt-2 mb-3 recipe_title fw-bolder">{{ recipe.title }}</h6>
-                      <p class="mt-5">Recipe by: {{recipe.created_by}}</p>
-          </a>
+        <a class="recipe-title" href="{% url 'recipeDetails' id=recipe.id%}">
+          <div class="card border-dark mb-2" style="height: 24rem;">
+            <img class="card-img-top border-bottom image-resize" src="{{recipe.image}}" alt="">
+            <div class="card-body">
+              <p class="recipe_category">#{{recipe.category}}</p>
+              <h6 class="mt-2 mb-3 recipe_title fw-bolder">{{ recipe.title }}</h6>
+              <p class="mt-5">Recipe by: {{recipe.created_by}}</p>
+        </a>
       </div>
+    </div>
   </div>
-</div>
-{% endfor %}
+  {% endfor %}
   </div>
 </section>
 
-            
+
 <section class="allrecipes py-5">
-    <div class="container">
-        <div class="title-wrap d-flex justify-content-between mb-2">
-            <h4 class="all_title">All Recipes</h4>
-            <p class="mt-1"><span class="fw-bold">{{recipe_count}}</span> recipes found</p>
-        </div>
-        <div class="row">
-            {% for recipe in all_recipes %}
-            <div class="col-lg-3 col-md-6 py-3">
-                <a class="recipe-title" href="{% url 'recipeDetails' id=recipe.id%}">
-                    <div class="card border-dark mb-2" style="height: 24rem;">
-                        <img class="card-img-top border-bottom image-resize" src="{{recipe.image}}" alt="">
-                        <div class="card-body">
-                            <p class="recipe_category">#{{recipe.category}}</p>
-                            <h6 class="mt-2 mb-3 recipe_title fw-bolder">{{ recipe.title }}</h6>
-                            <p class="mt-5">Recipe by: {{recipe.created_by}}</p>
-                </a>
-            </div>
-        </div>
+  <div class="container">
+    <div class="title-wrap d-flex justify-content-between mb-2">
+      <h4 class="all_title">All Recipes</h4>
+      <p class="mt-1"><span class="fw-bold">{{recipe_count}}</span> recipes found</p>
     </div>
-    {% endfor %}
+    <div class="row">
+      {% for recipe in all_recipes %}
+      <div class="col-lg-3 col-md-6 py-3">
+        <a class="recipe-title" href="{% url 'recipeDetails' id=recipe.id%}">
+          <div class="card border-dark mb-2" style="height: 24rem;">
+            <img class="card-img-top border-bottom image-resize" src="{{recipe.image}}" alt="">
+            <div class="card-body">
+              <p class="recipe_category">#{{recipe.category}}</p>
+              <h6 class="mt-2 mb-3 recipe_title fw-bolder">{{ recipe.title }}</h6>
+              <p class="mt-5">Recipe by: {{recipe.created_by}}</p>
+        </a>
+      </div>
     </div>
+  </div>
+  {% endfor %}
+  </div>
 
 
-<!-- Pagination -->
-<nav aria-label="Page navigation example">
-  {% if all_recipes.has_other_pages %}
-  <ul class="mt-4 mb-4 pagination justify-content-center">
-    <!-- conditional to show whether the previous button should be activated or passive  -->
-    {% if all_recipes.has_previous %}
-    <li class="page-item">
-      <a class="page-link" href="?page={{ all_recipes.previous_page_number }}" aria-label="Previous">
-        <span aria-hidden="true">Previous</span>
-      </a>
-    </li>
-    {% else %}
-    <li class="page-item disabled">
-      <a class="page-link" href="" aria-label="Previous">
-        <span>Previous</span>
-      </a>
-    </li>
+  <!-- Pagination -->
+  <nav aria-label="Page navigation example">
+    {% if all_recipes.has_other_pages %}
+    <ul class="mt-4 mb-4 pagination justify-content-center">
+      <!-- conditional to show whether the previous button should be activated or passive  -->
+      {% if all_recipes.has_previous %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ all_recipes.previous_page_number }}" aria-label="Previous">
+          <span aria-hidden="true">Previous</span>
+        </a>
+      </li>
+      {% else %}
+      <li class="page-item disabled">
+        <a class="page-link" href="" aria-label="Previous">
+          <span>Previous</span>
+        </a>
+      </li>
+      {% endif %}
+      {% for page in all_recipes.paginator.page_range %}
+      {% if all_recipes.number == page %}
+      <li class="page-item active">
+        <a class="page-link" href="{{ page }}">
+          {{ page }}
+        </a>
+      </li>
+      {% else %}
+      <li class="page-item"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
+      {% endif %}
+      {% endfor %}
+      <!-- conditional to display whether the next button should be activated or passive  -->
+      {% if all_recipes.has_next %}
+      <li class="page-item">
+        <a class="page-link" href="?page={{ all_recipes.next_page_number }}" aria-label="Next">
+          <span aria-hidden="true">Next</span>
+        </a>
+      </li>
+      {% else %}
+      <li class="page-item disabled">
+        <a class="page-link" href="" aria-label="Next">
+          <span>Next</span>
+        </a>
+      </li>
+      {% endif %}
+    </ul>
     {% endif %}
-    {% for page in all_recipes.paginator.page_range %}
-    {% if all_recipes.number == page %}
-    <li class="page-item active">
-      <a class="page-link" href="{{ page }}">
-        {{ page }}
-      </a>
-    </li>
-    {% else %}
-    <li class="page-item"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
-    {% endif %}
-    {% endfor %}
-    <!-- conditional to display whether the next button should be activated or passive  -->
-    {% if all_recipes.has_next %}
-    <li class="page-item">
-      <a class="page-link" href="?page={{ all_recipes.next_page_number }}" aria-label="Next">
-        <span aria-hidden="true">Next</span>
-      </a>
-    </li>
-    {% else %}
-    <li class="page-item disabled">
-      <a class="page-link" href="" aria-label="Next">
-        <span>Next</span>
-      </a>
-    </li>
-    {% endif %}
-  </ul>
-  {% endif %}
-</nav>
-</div>
+  </nav>
+  </div>
 
 </section>
-        
-
-            
 
 
-  
+
+
+
+
 
 
 
