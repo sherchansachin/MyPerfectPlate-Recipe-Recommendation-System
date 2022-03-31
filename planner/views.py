@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.views.generic import DetailView, ListView
 from main.models import Recipes
+from django.http import HttpResponseRedirect
 from django.contrib import messages
 from planner.models import DaysName, MealPlan
 
@@ -36,7 +37,7 @@ def mealplan(request):
 
 def filter_days(request, slug):
     '''
-    
+    this function filters the saved recipes of specific users on the day wise basis
     '''
     individual_day = get_object_or_404(DaysName, slug=slug)
 
@@ -56,6 +57,15 @@ def filter_days(request, slug):
                                                     'count': count,
                                                     'recipe_list': recipe_list,
                                                     'days':days})
+
+@login_required
+def remove(request,id):
+    '''
+    this function removes/ deletes the planned recipes of the logged in users for the particular day
+    '''
+    planned_recipe = MealPlan.objects.get(recipe=id, user=request.user.id)
+    planned_recipe.delete()
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 
 @login_required
