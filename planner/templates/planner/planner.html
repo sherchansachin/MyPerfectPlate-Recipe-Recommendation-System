@@ -96,7 +96,7 @@
         <img src="{% static 'image/mealplan.jpg' %}" class="img-fluid plan-img" alt="" />
       </div>
       <div class="col-md p-4">
-        <h1 class="build-text display-3 mb-4 mt-3">Build your <br>Meal Plan</h1>
+        <h1 class="build-text display-3 fw-bold mb-4 mt-3">Build your <br>Meal Plan</h1>
         <div class="col-md-10 text-justify">
           <p>
             Organize your meals on a weekly basis with My Perfect Plate. Create your very own meal plan just for you!
@@ -104,7 +104,7 @@
         </div>
       
           {% for day in days|slice:":1" %}
-              <a href="{% url 'filterdays' day.slug %}"  class="btn btn-outline-primary mt-4 " >See my plans <i class="fa-solid fs-6 fa-chevron-right ms-2"></i></a>
+              <a href="{% url 'filterdays' day.slug %}"  class="btn btn-primary mt-4 " >See my plans <i class="fa-solid fs-6 fa-chevron-right ms-2"></i></a>
             {% endfor %}
            
         </a>
