@@ -1,7 +1,4 @@
-from operator import mod
-from pyexpat import model
-from statistics import mode
-from telnetlib import STATUS
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth.models import User
 from django.db import models
 from autoslug import AutoSlugField
@@ -40,7 +37,6 @@ class Recipes(models.Model):
 class Rating(models.Model):
     recipe = models.ForeignKey(Recipes, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    subject = models.CharField(max_length=100, blank=True)
     review = models.CharField(max_length=500, blank=True)
     ratings = models.FloatField()
     status = models.BooleanField(default=True)
@@ -48,4 +44,4 @@ class Rating(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     
     def __str__(self):
-        return self.subject
+        return '{} rated {} plan for {}'.format(self.user, self.ratings, self.recipe)

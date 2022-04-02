@@ -1,7 +1,11 @@
-from django.shortcuts import render, get_object_or_404
+import re
+from django.shortcuts import render, get_object_or_404, redirect
 from datetime import datetime
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from .models import Category, Recipes
+from .models import Category, Recipes, Rating
+from .forms import ReviewForm
+from django.contrib import messages
+from django.http import HttpResponseRedirect
 # Create your views here.
 
 
@@ -85,3 +89,21 @@ def recipe_details(request, id):
                                                 'fav': fav,
                                                 })
     
+
+def submit_review(request, id):
+    """
+    this function saves a review and rating for a particular recipe
+    """
+    recipe = get_object_or_404(Recipes, pk=id)
+    if request.method == "POST":
+        review = request.POST['review']
+        rate = request.POST['rating']
+        ratingObj = Rating()
+        ratingObj.recipe = recipe
+        ratingObj.user = request.user
+        ratingObj.review = review
+        ratingObj.ratings = rate
+        ratingObj.save()
+
+        return redirect(request.META['HTTP_REFERER'])
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
