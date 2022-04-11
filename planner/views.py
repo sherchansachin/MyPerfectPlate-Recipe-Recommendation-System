@@ -34,7 +34,7 @@ def mealplan(request):
                                                     'days': days})
 
 
-
+@login_required
 def filter_days(request, slug):
     '''
     this function filters the saved recipes of specific users on the day wise basis
