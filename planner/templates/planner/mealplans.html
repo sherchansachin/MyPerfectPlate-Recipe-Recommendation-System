@@ -41,6 +41,19 @@ hr{
   font-weight: 700; 
 }
 
+.view:hover{
+  text-decoration: underline;
+}
+
+.icon-resize{
+  margin-top: 7rem;
+  height: 50px;
+}
+
+.plans a {
+  color: #000;
+}
+
   
 </style>
 
@@ -84,27 +97,36 @@ hr{
 </section>
 
 
-<section>
+<section class="plans">
   <div class="container">
     <hr class="mt-5 mb-3">
+    <h4 class="pt-3 pb-3">{{user.username}}'s Meal Plans for {{individual_day.days}} </h4>
+
       <div class="row g-5">
-        <!-- <h4 class="mt-3">Plans for {{individual_day.days}} </h4> -->
+        <div class="col-lg-3 col-md-6 py-3">
+            <a class="recipe-title" href="{% url 'recipes' %}">
+                <div class="card border-dark" style="height: 24rem;">
+                <div class="card-body text-center">
+                <img class="icon-resize" src="{% static 'image/discover.svg' %}" alt="">
+                <p class="mt-4 mb-4 fs-4 recipe_title fw-bolder"> EXPLORE<br> RECIPES</p>
+                <p class="mt-5">And add them to your meal plans!</p>
+            </a></div></div>
+            </div>
         {% for recipe in recipe_list %}
-        <div class="col-md-3">
+        <div class="col-lg-3 col-md-6 py-3">
           <div class="card my-1">
             <img class="image-resize" src="{{recipe.image}}" alt="Card image cap">
             <div class="card-body link_days">
               <p class="fw-light">#{{recipe.category}}</p>
               <h6 class="fw-bold">{{recipe.title}}</h6>
               </div>
-              <div class="d-flex justify-content-between align-items-center">
-            <a href="{% url 'recipeDetails' id=recipe.id%}" class="btn m-1">View Recipe</a>
-            <a href="{% url 'remove' id=recipe.id%}" class="btn ms-3"><i class="fa-solid fa-xmark me-2"></i>Remove</a>
+              <div class="d-flex justify-content-between align-items-center mb-2">
+            <a href="{% url 'recipeDetails' id=recipe.id%}" class="btn m-2  view"><i class="fa-regular fa-eye me-2"></i>View Recipe</a>
+            <a href="{% url 'remove' id=recipe.id%}" class="btn ms-3 view"><i class="fa-solid fa-xmark me-2"></i>Remove</a>
           </div>
         </div>
         </div>
-        {% empty %}
-        <h4>No meal plans added</h4>
+     
         {% endfor %}
       </div>
   </div>

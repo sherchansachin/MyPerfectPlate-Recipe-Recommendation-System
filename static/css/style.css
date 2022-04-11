@@ -175,8 +175,8 @@ a{
     }
     
   }
-/* 
-  .back{
+
+  /* .back{
     background: url(../image/home-bg.jpg) no-repeat;
     background-size: cover;
     justify-content: center;
@@ -214,9 +214,9 @@ a{
   /* recipe page */
 
   .allrecipes{
-    /* maybe F9F8F9 */
-    background: #FAF8EE;
-    border-top: 0.1px solid #3d7ca7;
+    /* maybe  */
+    background: #FBFBFB;
+    border-top: 0.1px solid #050505;
   }
 
   .all_title{
@@ -243,7 +243,15 @@ a{
     transform: scale(1.03);
     border: 10px solid;
     border-width: 1px;
-    box-shadow: 7px 7px 0px 0px #26B7C5;
+    box-shadow: 7px 7px 0px 0px #1B4D7A;
+    transition: all 0.3s;
+  }
+
+  .recent .card:hover {
+    transform: scale(1.03);
+    border: 10px solid;
+    border-width: 1px;
+    box-shadow: 7px 7px 0px 0px #1B4D7A;
     transition: all 0.3s;
   }
 
@@ -251,7 +259,7 @@ a{
     transform: scale(1.04);
     border: 10px solid;
     border-width: 1px;
-    box-shadow: 7px 7px 0px 0px #26B7C5;
+    box-shadow: 7px 7px 0px 0px #1B4D7A;
     transition: all 0.3s;
   }
 
@@ -277,6 +285,12 @@ a{
     text-decoration: none;
   }
 
+  #recipe-top {
+    background-image: linear-gradient(to right, rgba(255,0,0,0), rgb(237, 242, 248));
+  }
+  .recipe-top{
+    background-color: #F3F8FF;
+  }
   .recipe_des {
     margin-top: 40px;
   }
@@ -300,16 +314,43 @@ a{
 
   /* recipe details */
 
+  .image-re {
+    height: 440px;
+    width: 600px;
+    object-fit: cover;
+}
+
+.image-re{
+    height: 620px;
+  
+    object-fit: cover;
+}
+
+.save-recipe a{
+    color: #1B4C7B;
+}
+
   .details{
     margin-top: 60px;
   }
 
+  /* recipeimage resize */
+@media (max-width: 769px) {  
+  .image-re {
+    height: 440px;
+  
+    object-fit: cover;
+}
+
+
+  
+}
    
   /* search */
 
   .searchrecipes{
-    background: #FAF8EE;
-    border-top: 0.1px solid #3d7ca7;
+    background: #FBFBFB;
+    border-top: 0.1px solid #050505;
   }
 
   .searchrecipes a{
@@ -348,8 +389,8 @@ a{
 }
 
 .saved{
-  border-top: 4px solid #3d7ca7;
-  background-color: #FAF8EE;
+  border-top: 1px solid #050505;
+  background-color: #FBFBFB;
 }
 
 /* profile */
