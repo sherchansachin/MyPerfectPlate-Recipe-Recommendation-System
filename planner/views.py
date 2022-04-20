@@ -79,11 +79,13 @@ def save_plan(request,id):
     if request.method == 'POST':
         data = request.POST
 
+        day_name = DaysName.objects.get(id=data['day'])
+
         # see if duplicate entries
         user_id = request.user.id
         recipe_id = id
 
-        if not MealPlan.objects.filter(user_id=user_id, recipe_id=recipe_id).exists():
+        if not MealPlan.objects.filter(user_id=user_id, recipe_id=recipe_id, day_id = day_name).exists():
             if data['day'] != 'none':
                 day = DaysName.objects.get(id=data['day'])
                 planned = MealPlan.objects.create(

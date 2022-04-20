@@ -12,7 +12,3 @@ urlpatterns = [
 
     
 ]
-
-htmx_patterns = [
-    path('add-notes/', views.add_notes, name='add-notes'),
-]
