@@ -100,3 +100,7 @@ def save_plan(request,id):
 
     return render(request, 'planner/addmeal.html', {"recipe":recipe,
                                                     "days": days})
+
+@login_required
+def add_notes(request):
+    pass

@@ -6,69 +6,83 @@
 
 
 
-<section class="recipe  mt-4 py-5 border-bottom" id="recipe-top">
+<section class="recipe  mt-4 py-4 border-bottom" id="recipe-top">
     <div class="container">
-        <div class="breadcrumb-item fw-bold py-3 "><a href="{% url 'recipes'%}" class="crumbs"> <i class="fas fa-arrow-left me-1"></i>Back to Recipes</a></div>
-      <div class="row flex-lg-row-reverse align-items-center justify-content-between">
-        <div class="col-md">
-            <img src="{{details.image}}" class="img-fluid image-re border rounded-1" alt="">
-        </div>
-        <div class="col-md p-3">
-          <h1 class="fw-bold display-5 mb-4">{{details.title}}</h1>
-          <p> Recipe by: <span class="fw-bold">{{details.created_by}}</span> </p>
-            <div class="mt-5 mb-3">
-                <p class="fw-light"><i class="far fa-clock me-2"></i><span class="fw-bold">Prep time:</span> {{details.preptime}} </p>
-                <p class="fw-light"><i class="fas fa-hashtag me-2"></i> <span class="fw-bold">Category: </span>{{details.category}}</p>
-                <div class="nutrients-fact">
-                    <!-- Button trigger modal -->
-                    <i class="fas fa-chart-bar"></i><button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                       See Nutritional Information
-                   </button>
-                   
-                   <!-- Modal -->
-                   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                       <div class="modal-dialog modal-sm modal-dialog-centered modal-dialog-scrollable">
-                       <div class="modal-content">
-                           <div class="modal-header">
-                           <h6 class="modal-title" id="exampleModalLabel"><i class="fas fa-chart-bar me-2"></i>Nutritional Information</h6>
-                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                           </div>
-                           <div class="modal-body">
-                               <p class="fw-bolder ">{{details.title}}</p><hr>
-                               <p><span class="fw-bold">Calories:</span>  {{details.calories}}</p>
-                               <p><span class="fw-bold">Protein:</span>  {{details.pro}}</p>
-                               <p><span class="fw-bold">Carbohydrate:</span>  {{details.carbs}}</p>
-                               <p><span class="fw-bold">Sodium:</span>  {{details.sod}}</p>
-                               <p><span class="fw-bold">Cholestrol:</span>  {{details.cho}}</p>
-                               <p><span class="fw-bold">Fat:</span>  {{details.fat}}</p>
-                           </div>
-                       </div>
-                       </div>
-                   </div>
-               </div>
-            </div>        
-          <div>
-              
-                 <!-- save recipe button -->
-        <div class="save-recipe mt-5 title-wrap d-flex justify-content-between mb-2">
-            {% if fav %} 
-            <a href="{% url 'save_recipes' details.id %}"><p class="lead" ><i class="fas fa-bookmark me-2"></i>Unsave recipe</p></a>
-            {% else %}
-            <a href="{% url 'save_recipes' details.id %}"><p class="lead" ><i class="far fa-bookmark me-2"></i> Save this Recipe</p></a>
-            {% endif %}
-        </div>
+        <div class="breadcrumb-item fw-bold py-3 "><a href="{% url 'recipes'%}" class="crumbs"> <i
+                    class="fas fa-arrow-left me-1"></i>Back to Recipes</a></div>
+        <div class="row flex-lg-row-reverse align-items-center justify-content-between">
+            <div class="col-md">
+                <img src="{{details.image}}" class="img-fluid image-re border rounded-1" alt="">
+            </div>
+            <div class="col-md p-3">
+                <h1 class="fw-bold display-5 mb-4">{{details.title}}</h1>
+                <p> Recipe by: <span class="fw-bold">{{details.created_by}}</span> </p>
+                <div class="mt-5 mb-3">
+                    <p class="fw-light"><i class="far fa-clock me-2"></i><span class="fw-bold">Prep time:</span>
+                        {{details.preptime}} </p>
+                    <p class="fw-light"><i class="fas fa-hashtag me-2"></i> <span class="fw-bold">Category:
+                        </span>{{details.category}}</p>
+                    <div class="nutrients-fact">
+                        <!-- Button trigger modal -->
+                        <i class="fas fa-chart-bar"></i><button type="button" class="btn btn-link"
+                            data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            See Nutritional Information
+                        </button>
 
-        <div class="save-recipe">
-            <!-- add to meal planner -->
-            <a href="{% url 'save_plan' details.id %}"><p class="lead"><i class="fa-regular fa-calendar-check me-2"></i>Add To Meal Planner</p></a>
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog modal-sm modal-dialog-centered modal-dialog-scrollable">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h6 class="modal-title" id="exampleModalLabel"><i
+                                                class="fas fa-chart-bar me-2"></i>Nutritional Information</h6>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p class="fw-bolder ">{{details.title}}</p>
+                                        <hr>
+                                        <p><span class="fw-bold">Total Calories:</span> {{details.calories}}</p>
+                                        <p><span class="fw-bold">Protein:</span> {{details.pro}}</p>
+                                        <p><span class="fw-bold">Carbohydrate:</span> {{details.carbs}}</p>
+                                        <p><span class="fw-bold">Sodium:</span> {{details.sod}}</p>
+                                        <p><span class="fw-bold">Cholestrol:</span> {{details.cho}}</p>
+                                        <p><span class="fw-bold">Fat:</span> {{details.fat}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+
+                    <!-- save recipe button -->
+                    <div class="save-recipe mt-5 title-wrap d-flex justify-content-between mb-2">
+                        {% if fav %}
+                        <a href="{% url 'save_recipes' details.id %}">
+                            <p class="lead fw-bold"><i class="fas fa-bookmark me-2"></i>Unsave recipe</p>
+                        </a>
+                        {% else %}
+                        <a href="{% url 'save_recipes' details.id %}">
+                            <p class="lead fw-bold"><i class="far fa-bookmark me-2"></i> Save this Recipe</p>
+                        </a>
+                        {% endif %}
+                    </div>
+
+                    <div class="save-recipe">
+                        <!-- add to meal planner -->
+                        <a href="{% url 'save_plan' details.id %}">
+                            <p class="lead fw-bold"><i class="fa-regular fa-calendar-check me-2"></i>Add To Meal Planner</p>
+                        </a>
+                    </div>
+
+
+                </div>
+            </div>
         </div>
-            
-            
-          </div>
-        </div>
-      </div>
     </div>
-  </section>
+</section>
 
 
 
@@ -87,53 +101,185 @@
                 <h3 class="mb-4 fw-bold">Directions</h3>
                 {% for inst in instructions %}
                 <ul class="list-group">
-                    <span class="mb-2 mt-3 fw-bold"><i class="fa-solid fa-circle-check me-2"></i>Step: {{forloop.counter}}</span>
+                    <span class="mb-2 mt-3 fw-bold"><i class="fa-solid fa-circle-check me-2"></i>Step:
+                        {{forloop.counter}}</span>
                     <li class="list-group-item" style="border: none"><span class="mb-3">{{inst}}</span></li>
                 </ul>
-                
+
                 {% endfor %}
             </div>
         </div>
     </div>
 </section>
 
-<section class="py-5">
+<!-- Modal -->
+<div class="modal fade" id="notesModal" tabindex="-1" aria-labelledby="notesModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="notesModalLabel">Save a note</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form class="">
+            {% csrf_token %}
+            <textarea name="review" rows="3" class="form-control mb-3" placeholder="Type in your notes"></textarea>
+            <button hx-post="#" hx-target="#plan-list" data-bs-dismiss="modal" type="submit" class="btn btn-primary">Add note</button>
+
+            <!-- <input type="text" name="planname" class="form-control-sm mr-2" placeholder="Enter a Plan name" /><br> -->
+        </form>
+        </div>
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+         
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+<section class="py-4 mt-3 note">
     <div class="container">
-        <h3>User Reviews</h3>
+        <div class="row">
+            <div class="col-md-6 p-4">
+                {% if user.is_authenticated %}
+                <h5 class="fw-bold btn-link cursor-pointer" data-bs-toggle="modal" data-bs-target="#notesModal"><i class="fa-solid fa-plus"></i> Save a note for {{details.title}} </h5>
+                {% else %}
+                <h5 class="fw-bold btn-link cursor-pointer"><i class="fa-solid fa-plus"></i> You must be logged in to save notes</h5>
+                {% endif %}
+            </div>
+
+            <!-- <div class="col-md-6">
+                <div id="plan-list" class="card p-3">
+                    <p><i class="fa-solid fa-pen me-3"></i>This is a example note</p>
+                </div>
+            </div> -->
+           
+        </div>
+        
+    </div>
+</section>
+
+
+
+
+<section class="py-2">
+    <div class="container">
         <form method="POST" action="{% url 'review' details.id %}" class="mt-4">
             {% csrf_token %}
-            <div class="col-6">
-                <hr>
-                <h5>How would you rate {{details.title}}?</h5>
-                <!-- rating -->
-                <div class="rate">
-                    <input type="radio" name="rating" id="rating10" value="5" required><label for="rating10" title="5"></label>
-                    <input type="radio" name="rating" id="rating9" value="4.5" required><label for="rating9" title="4.5" class="half"></label>
-                    <input type="radio" name="rating" id="rating8" value="4" required><label for="rating8" title="4"></label>
-                    <input type="radio" name="rating" id="rating7" value="3.5" required><label for="rating7" title="3.5" class="half"></label>
-                    <input type="radio" name="rating" id="rating6" value="3" required><label for="rating6" title="3"></label>
-                    <input type="radio" name="rating" id="rating5" value="2.5" required><label for="rating5" title="2.5" class="half"></label>
-                    <input type="radio" name="rating" id="rating4" value="2" required><label for="rating4" title="2"></label>
-                    <input type="radio" name="rating" id="rating3" value="1.5" required><label for="rating3" title="1.5" class="half"></label>
-                    <input type="radio" name="rating" id="rating2" value="1" required><label for="rating2" title="1"></label>
-                    <input type="radio" name="rating" id="rating1" value="0.5" required><label for="rating1" title="0.5" class="half"></label>
+            <div class="row gx-5">
+                <div class="col-md-6 ">
+                    <hr class="mb-3">
+                    <h5 class="pt-3">How would you rate {{details.title}}?</h5>
+                    <!-- rating -->
+                    {% if user.is_authenticated %}
+                    <div class="rate">
+                        <input type="radio" name="rating" id="rating10" value="5" required><label for="rating10"
+                            title="5"></label>
+                        <input type="radio" name="rating" id="rating9" value="4.5" required><label for="rating9"
+                            title="4.5" class="half"></label>
+                        <input type="radio" name="rating" id="rating8" value="4" required><label for="rating8"
+                            title="4"></label>
+                        <input type="radio" name="rating" id="rating7" value="3.5" required><label for="rating7"
+                            title="3.5" class="half"></label>
+                        <input type="radio" name="rating" id="rating6" value="3" required><label for="rating6"
+                            title="3"></label>
+                        <input type="radio" name="rating" id="rating5" value="2.5" required><label for="rating5"
+                            title="2.5" class="half"></label>
+                        <input type="radio" name="rating" id="rating4" value="2" required><label for="rating4"
+                            title="2"></label>
+                        <input type="radio" name="rating" id="rating3" value="1.5" required><label for="rating3"
+                            title="1.5" class="half"></label>
+                        <input type="radio" name="rating" id="rating2" value="1" required><label for="rating2"
+                            title="1"></label>
+                        <input type="radio" name="rating" id="rating1" value="0.5" required><label for="rating1"
+                            title="0.5" class="half"></label>
+                    </div>
+                    {% else %}
+                    <div class="loginrate">
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star"></span>
+                    </div>
+                    <figure>
+                        <figcaption class="blockquote-footer mt-1">
+                          You must be logged in to rate!</cite>
+                        </figcaption>
+                    </figure>
+                    
+                    
+                    {% endif %}
+                    <hr>
+                    <br>
+                    Leave a Review:
+                    <textarea name="review" rows="3" class="form-control"></textarea>
+                    {% if user.is_authenticated %}
+                    <button type="submit" class="btn btn-primary mt-4">Submit Review</button>
+                    {% else %}
+                    <p class="mt-3">You must be logged in to post a review. <span><a href="{% url 'login' %}">Login
+                                now</a></span></p>
+                    {% endif %}
                 </div>
-                <hr>
 
-
-        
-                <br>
-                Leave a Review:
-                <textarea name="review" rows="3" class="form-control" ></textarea>
-                {% if user.is_authenticated %}
-                <button type="submit" class="btn btn-primary mt-4">Submit Review</button>
-                {% else %}
-				<p class="mt-3">You must be logged in to post a review. <span><a href="{% url 'login' %}">Login now</a></span></p>
-                {% endif %}
+                
             </div>
         </form>
     </div>
+    </div>
 </section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+
+            
+            <h3 class="mb-4">User Reviews</h3>  
+            {% for review in reviews %}
+        <article class="card p-3 mb-3">
+            <div class="icontext w-100">
+
+                <div class="text">
+                    <span class="date text-muted float-md-right">{{review.updated_at}} </span>
+                    <p class="mb-1 fw-bold">{{review.user.username}} </p>
+                    <div class="mt-3">
+                        <p>
+                            {{review.review}}
+                        </p>
+                    </div>
+                    <div class="rating-star">
+                        <span>
+                            <i class="fa fa-star{% if review.ratings == 0.5 %}-half-o{% elif review.ratings < 1 %}-o {% endif %}" aria-hidden="true"></i>
+                            <i class="fa fa-star{% if review.ratings == 1.5 %}-half-o{% elif review.ratings < 2 %}-o {% endif %}" aria-hidden="true"></i>
+                            <i class="fa fa-star{% if review.ratings == 2.5 %}-half-o{% elif review.ratings < 3 %}-o {% endif %}" aria-hidden="true"></i>
+                            <i class="fa fa-star{% if review.ratings == 3.5 %}-half-o{% elif review.ratings < 4 %}-o {% endif %}" aria-hidden="true"></i>
+                            <i class="fa fa-star{% if review.ratings == 4.5 %}-half-o{% elif review.ratings < 5 %}-o {% endif %}" aria-hidden="true"></i>
+                        </span>
+                        
+                    </div>
+                </div>
+            </div> <!-- icontext.// -->
+            
+        </article>
+{% endfor %}
+</div>
+</div>
+        </div>
+</section>
+
+<!-- <section class="py-4">
+    <div class="container">
+        <h5 class="pb-3">Here are some recommendations for you!</h5>
+        {% for rc in recommendated  %}
+            {{rc.title}} <br>
+            {{rc.preptime}} <br>
+            {{rc.category}} <br>
+            
+            <hr>
+            {% endfor %}
+    </div>
+</section> -->
 
 
 {% endblock content %}

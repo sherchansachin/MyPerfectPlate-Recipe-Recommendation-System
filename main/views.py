@@ -1,10 +1,14 @@
-import re
 from django.shortcuts import render, get_object_or_404, redirect
 from datetime import datetime
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
+from django.contrib.auth.decorators import login_required
 from .models import Category, Recipes, Rating
 from .forms import ReviewForm
 from django.contrib import messages
+import pandas as pd
+import joblib
+
+
 from django.http import HttpResponseRedirect
 # Create your views here.
 
@@ -12,7 +16,6 @@ from django.http import HttpResponseRedirect
 
 
 def home(request):
-  
     return render(request, 'main/home.html')
 
 
@@ -59,6 +62,23 @@ def filter_category(request, slug):
                                                     'recipes':recipes,
                                                     'count': count})
 
+#recommendation function
+
+# def recommendation(recipe_name):
+#     filename = 'model_pickle.pkl'
+#     mdl = joblib.load(filename) 
+#     df = pd.read_csv("complete.csv")
+#     df = df.set_index("title")
+#     distances, indices = mdl.kneighbors(df.loc[recipe_name,:].values.reshape(1, -1), n_neighbors = 6)
+#     ind = indices.flatten()
+#     dist = distances.flatten()
+#     recommendated_book = []
+#     for i in range(0, len(distances.flatten())):
+#         if i == 0:
+#             pass
+#         else:
+#             recommendated_book.append(df.index[ind[i]])
+#     return recommendated_book
 
 
 def recipe_details(request, id):
@@ -66,6 +86,19 @@ def recipe_details(request, id):
     this function based view shows the detail information of a particular recipe
     '''
     details = get_object_or_404(Recipes, pk=id)
+
+    # recipe_name = details.title
+    # obj_list = []
+    # print(recipe_name)
+    # try:
+    #     recipes = recommendation(recipe_name)
+    #     print(recipes)
+    #     for i in recipes:
+    #         obj = Recipes.objects.get(title = i)
+    #         obj_list.append(obj)
+
+    # except:
+    #     print("something went wrong")
 
     # capture the dateandtime for recently viewed recipes
     details.recently_viewed = datetime.now()
@@ -76,6 +109,9 @@ def recipe_details(request, id):
 
     if details.favourites.filter(id=request.user.id).exists():
         fav = True
+    
+     # Get the reviews
+    reviews = Rating.objects.filter(recipe_id=id)
         
     tags = details.tags.split('#')
     ingredients = details.ingredients.split('#')
@@ -87,23 +123,37 @@ def recipe_details(request, id):
                                                 'categories': categories,
                                                 'tags': tags,
                                                 'fav': fav,
+                                                'reviews': reviews
+                                                # 'recommendated':obj_list
                                                 })
     
+
 
 def submit_review(request, id):
     """
     this function saves a review and rating for a particular recipe
     """
     recipe = get_object_or_404(Recipes, pk=id)
+
     if request.method == "POST":
-        review = request.POST['review']
-        rate = request.POST['rating']
-        ratingObj = Rating()
-        ratingObj.recipe = recipe
-        ratingObj.user = request.user
-        ratingObj.review = review
-        ratingObj.ratings = rate
-        ratingObj.save()
+        # see if duplicate entries
+        user_id = request.user.id
+        recipe_id = id
+
+        if not Rating.objects.filter(user_id=user_id, recipe_id= recipe_id).exists():
+            review = request.POST['review']
+            rate = request.POST['rating']
+            ratingObj = Rating()
+            ratingObj.recipe = recipe
+            ratingObj.user = request.user
+            ratingObj.review = review
+            ratingObj.ratings = rate
+            ratingObj.save()
+        else:
+            print("ratings and review for this recipe was already givenn")
 
         return redirect(request.META['HTTP_REFERER'])
+    
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+

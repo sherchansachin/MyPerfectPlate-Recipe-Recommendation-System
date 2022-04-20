@@ -9,4 +9,10 @@ urlpatterns = [
 
     # save meal plan
     path('save-meal/<int:id>/', views.save_plan, name='save_plan')
+
+    
+]
+
+htmx_patterns = [
+    path('add-notes/', views.add_notes, name='add-notes'),
 ]
