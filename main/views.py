@@ -5,8 +5,10 @@ from django.contrib.auth.decorators import login_required
 from .models import Category, Recipes, Rating
 from .forms import ReviewForm
 from django.contrib import messages
-import pandas as pd
-import joblib
+import requests
+import json
+
+
 
 
 from django.http import HttpResponseRedirect
@@ -62,43 +64,51 @@ def filter_category(request, slug):
                                                     'recipes':recipes,
                                                     'count': count})
 
-#recommendation function
-
-# def recommendation(recipe_name):
-#     filename = 'model_pickle.pkl'
-#     mdl = joblib.load(filename) 
-#     df = pd.read_csv("complete.csv")
-#     df = df.set_index("title")
-#     distances, indices = mdl.kneighbors(df.loc[recipe_name,:].values.reshape(1, -1), n_neighbors = 6)
-#     ind = indices.flatten()
-#     dist = distances.flatten()
-#     recommendated_book = []
-#     for i in range(0, len(distances.flatten())):
-#         if i == 0:
-#             pass
-#         else:
-#             recommendated_book.append(df.index[ind[i]])
-#     return recommendated_book
-
 
 def recipe_details(request, id):
     '''
     this function based view shows the detail information of a particular recipe
+
+    the function also sends POST request (recipe title) to Flask API where content based
+    filtering on the basis of TF-IDF and calculation of cosine-similarity is done.
+
+    Then, the recommendated similar recipes are GET in form of dictonary, where values (recipe name)
+    is filtered against the Database and results are passed to templates as context variable.
     '''
     details = get_object_or_404(Recipes, pk=id)
 
-    # recipe_name = details.title
-    # obj_list = []
-    # print(recipe_name)
-    # try:
-    #     recipes = recommendation(recipe_name)
-    #     print(recipes)
-    #     for i in recipes:
-    #         obj = Recipes.objects.get(title = i)
-    #         obj_list.append(obj)
+    headers = {
+        'content-type': "multipart/form-data",
+        'cache-control': "no-cache",
+    }
 
-    # except:
-    #     print("something went wrong")
+    recommend = None
+    obj_list = []
+    recipe_name = details.title
+    print(recipe_name)
+    if recipe_name:
+        url = "http://127.0.0.1:5000/get_recommendation"
+        payload = {'recipe_name':recipe_name}
+        responses = requests.request("POST",url,data=payload)
+        print(responses) #got 200 response, OK
+
+        response = json.loads(responses.text)
+    
+        print(response) # got the response from flask api
+
+        value = tuple(response.values()) #store the values to tuple,
+        print(value) # print the individual recipe's values got from flask
+
+        for x in value:
+            try:
+                '''
+                    filtering the recipes database by recipe title, with respect to
+                    the obtained flask recommendation api. 
+                '''
+                recommend = Recipes.objects.get(title=x)
+                obj_list.append(recommend) # append to a empty list
+            except:
+                pass
 
     # capture the dateandtime for recently viewed recipes
     details.recently_viewed = datetime.now()
@@ -123,8 +133,8 @@ def recipe_details(request, id):
                                                 'categories': categories,
                                                 'tags': tags,
                                                 'fav': fav,
-                                                'reviews': reviews
-                                                # 'recommendated':obj_list
+                                                'reviews': reviews,
+                                                'recommendated': obj_list
                                                 })
     
 

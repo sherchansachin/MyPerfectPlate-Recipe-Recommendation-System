@@ -4,6 +4,12 @@
 
 {% include 'base/navbar.html' %}
 
+<style>
+    .swiper-slide a{
+        color: #000;
+        cursor: pointer;
+    }
+</style>
 
 
 <section class="recipe  mt-4 py-4 border-bottom" id="recipe-top">
@@ -268,18 +274,31 @@
         </div>
 </section>
 
-<!-- <section class="py-4">
+<section class="py-4">
     <div class="container">
-        <h5 class="pb-3">Here are some recommendations for you!</h5>
-        {% for rc in recommendated  %}
-            {{rc.title}} <br>
-            {{rc.preptime}} <br>
-            {{rc.category}} <br>
-            
-            <hr>
-            {% endfor %}
+        <h5 class="pb-3">Similar recipes for <span class="fw-bold">{{details.title}}</span> :</h5>
+        <div class="swiper mySwiper py-5">
+            <div class="swiper-wrapper">
+            {% for rc in recommendated  %}
+              <div class="swiper-slide">
+                <a class="recipe-title" href="{% url 'recipeDetails' id=rc.id%}">
+                <div class="" style="height: 24rem;">
+                    <img src="{{rc.image}}" class="image-resize" alt="...">
+                    <div class="mt-3">
+                        <p class="recipe_category"># {{rc.category}}</p>
+                      <h6 class=" fw-bold">{{rc.title}}</h6>
+                      
+                    </div>
+                  </div>
+                  </a>
+              </div>
+             {% endfor %}
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>    
     </div>
-</section> -->
+</section>
+
 
 
 {% endblock content %}
