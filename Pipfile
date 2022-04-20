@@ -13,6 +13,8 @@ django-autoslug = "*"
 pillow = "*"
 django-active-link = "*"
 crispy-bootstrap5 = "*"
+joblib = "*"
+scikit-learn = "*"
 
 [dev-packages]
 
