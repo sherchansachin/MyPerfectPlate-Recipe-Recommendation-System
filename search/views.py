@@ -13,8 +13,10 @@ def search(request):
         query = request.GET.get('q')
         # print(query)
         if query:
-            recipes = Recipes.objects.filter(Q(ingredients__icontains=query ) | Q(tags__icontains=query))
-            count_search = recipes.count()
+            for ing in query.split():
+                recipes = Recipes.objects.filter(Q(ingredients__icontains=ing ) | Q(tags__icontains=ing))
+                count_search = recipes.count()
+                print(ing)
             return render(request, 'main/searched.html', {'recipes': recipes, 'count_search': count_search, 'query': query})
         else:
             print('No recipes found')
