@@ -100,10 +100,10 @@ hr{
 <section class="plans">
   <div class="container">
     <hr class="mt-5 mb-3">
-    <h4 class="pt-3 pb-3">{{user.username}}'s Meal Plans for {{individual_day.days}} </h4>
+    <h4 class="pt-3 pb-4">{{user.username}}'s Meal Plans for {{individual_day.days}} </h4>
 
       <div class="row g-5">
-        <div class="col-lg-3 col-md-6 py-3">
+        <div class="col-lg-3 col-md-6">
             <a class="recipe-title" href="{% url 'recipes' %}">
                 <div class="card border-dark" style="height: 24rem;">
                 <div class="card-body text-center">
@@ -113,7 +113,7 @@ hr{
             </a></div></div>
             </div>
         {% for recipe in recipe_list %}
-        <div class="col-lg-3 col-md-6 py-3">
+        <div class="col-lg-3 col-md-6">
           <div class="card my-1">
             <img class="image-resize" src="{{recipe.image}}" alt="Card image cap">
             <div class="card-body link_days">

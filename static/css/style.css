@@ -286,8 +286,9 @@ a{
   }
 
   #recipe-top {
-    background-image: linear-gradient(to right, rgba(255,0,0,0), rgb(237, 242, 248));
+    background-image: linear-gradient(to right, rgba(255,0,0,0), rgb(245, 249, 255));
   }
+  
   .recipe-top{
     background-color: #F3F8FF;
   }
@@ -298,6 +299,7 @@ a{
   .btn-link{
     color: #1c5b96;
     font-weight: 600;
+    cursor: pointer;
   }
 
   .btn-link:hover{
@@ -439,7 +441,17 @@ a{
 /* Showing the stars */
 .rate > label:before{
   display: inline-block;
-  font-size: 1.5rem;
+  font-size: 1.7rem;
+  font-family: FontAwesome;
+  content: "\f005";
+  margin:0;
+  padding:1rem .4rem;
+  cursor: pointer;
+}
+
+.loginrate{
+  display: inline-block;
+  font-size: 1.7rem;
   font-family: FontAwesome;
   content: "\f005";
   margin:0;
