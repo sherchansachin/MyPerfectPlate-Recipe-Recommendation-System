@@ -93,15 +93,15 @@
 <!-- recipe is saved alert -->
 {% for message in messages %}
     {% if message.tags == 'success' %}
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> -->
+    <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script>
-        // $(document).ready(function(){
-        //     $("#MyMessage").modal('show');
-        // });
-        const el = document.createElement('div')
-        var m = "{{ message }}"
-        swal("Perfect !", m, "success")
+        $(document).ready(function(){
+            $("#MyMessage").modal('show');
+        });
+        // const el = document.createElement('div')
+        // var m = "{{ message }}"
+        // swal("Perfect !", m, "success")
     </script>
     {% endif %}
 {% endfor %}

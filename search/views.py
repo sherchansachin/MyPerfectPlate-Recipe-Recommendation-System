@@ -12,7 +12,7 @@ def search(request):
     if request.method == 'GET':
         query = request.GET.get('q')
         # print(query)
-        if query:
+        if query: 
             for ing in query.split():
                 recipes = Recipes.objects.filter(Q(ingredients__icontains=ing ) | Q(tags__icontains=ing))
                 count_search = recipes.count()
