@@ -4,7 +4,7 @@ from . import views
 urlpatterns = [
     path('', views.mealplan, name="planner"),
     path('<slug:slug>', views.filter_days, name="filterdays"),
-    path('remove/<int:id>', views.remove, name="remove"),
+    path('remove/<int:id>/<str:day_id>', views.remove, name="remove"),
     
 
     # save meal plan

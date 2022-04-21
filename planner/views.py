@@ -59,11 +59,11 @@ def filter_days(request, slug):
                                                     'days':days})
 
 @login_required
-def remove(request,id):
+def remove(request,id, day_id):
     '''
     this function removes/ deletes the planned recipes of the logged in users for the particular day
     '''
-    planned_recipe = MealPlan.objects.get(recipe=id, user=request.user.id)
+    planned_recipe = MealPlan.objects.get(recipe=id, user=request.user.id, day=day_id)
     planned_recipe.delete()
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
