@@ -93,9 +93,11 @@ def save_plan(request,id):
                     recipe=recipe,
                     user=request.user
                 )
-            else:
-                print("This meal plan is already for the particular day,")
-
+                messages.success(request, 'Recipe successfully added to Meal plan!')
+            
+        else:
+            messages.info(request, "This meal plan is already added for the particular day,")
+    
     print('day:', day)
     
 

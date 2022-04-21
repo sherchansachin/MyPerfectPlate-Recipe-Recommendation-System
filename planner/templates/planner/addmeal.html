@@ -16,6 +16,97 @@
           </div>
 </section>
 
+{% for message in messages %}
+    {% if message.tags == 'success' %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            $("#MyMessage").modal('show');
+        });
+    </script>
+    {% endif %}
+{% endfor %}
+
+<!-- if recipe is already added to a particular day -->
+{% for message in messages %}
+    {% if message.tags == 'info' %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function(){
+            $("#Alert").modal('show');
+        });
+    </script>
+    {% endif %}
+{% endfor %}
+
+
+
+
+
+<!-- Modal pop up (success) -->
+<div class="modal fade" id="Alert" tabindex="-1" aria-labelledby="AlertLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h6 class="modal-title" id="AlertLabel"> <i class="fa-regular fa-calendar-check"></i>&nbsp;&nbsp;{{user.username}}'s Meal Plan Alert!</h6>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="text-center text-success mt-4">
+                <i class="fa-solid fa-circle-exclamation fa-7x" style="color: #FFC107;"></i>
+            </div>
+            <br>
+            <div class="mb-3 text-center">
+               <p class="lead"> <span class="fw-bold">{{recipe.title}}</span> has already been added for the particular day, <br><br> Maybe try another day?</p> 
+            </div>
+            <div class="text-center">
+                {% for day in days|slice:":1" %}
+              <a href="{% url 'filterdays' day.slug %}"  class=" view text-underline-hover" >See my plans<i class="fa-solid fs-6 fa-chevron-right ms-1"></i></a>
+            {% endfor %}
+            <!-- <span>View</span><a  href="{% url 'saved_list' %}"> All Saved Recipes</a> -->
+
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal" style="width: 65px;">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+<!-- Modal pop up (success) -->
+<div class="modal fade" id="MyMessage" tabindex="-1" aria-labelledby="MyMessageLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h6 class="modal-title" id="MyMessageLabel"> <i class="fa-regular fa-calendar-check"></i>&nbsp;&nbsp; Added to {{user.username}}'s Meal Plan </h6>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="text-center text-success mt-4">
+                <i class="fa-solid fa-check-circle fa-7x" style="color: #4BB543;"></i>
+            </div>
+            <br>
+            <div class="mb-3 text-center">
+               <p class="lead"> <span class="fw-bold">{{recipe.title}}</span> added to Meal Plan</p> 
+            </div>
+            <div class="text-center">
+                {% for day in days|slice:":1" %}
+              <a href="{% url 'filterdays' day.slug %}"  class=" view text-underline-hover" >See my plans<i class="fa-solid fs-6 fa-chevron-right ms-1"></i></a>
+            {% endfor %}
+            <!-- <span>View</span><a  href="{% url 'saved_list' %}"> All Saved Recipes</a> -->
+
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal" style="width: 65px;">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 <section>
     <div class="container p-3">
         <h2 class="mt-4 mb-3"> <i class="fa-solid fa-calendar-day me-3"></i>Create your Meal Plans</h2>

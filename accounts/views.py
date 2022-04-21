@@ -21,6 +21,7 @@ def save_recipe(request, id):
         recipe.favourites.remove(request.user)
     else:
         recipe.favourites.add(request.user)
+        messages.success(request, 'Recipe saved successfully!')
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 

@@ -90,6 +90,52 @@
     </div>
 </section>
 
+<!-- recipe is saved alert -->
+{% for message in messages %}
+    {% if message.tags == 'success' %}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> -->
+    <script>
+        // $(document).ready(function(){
+        //     $("#MyMessage").modal('show');
+        // });
+        const el = document.createElement('div')
+        var m = "{{ message }}"
+        swal("Perfect !", m, "success")
+    </script>
+    {% endif %}
+{% endfor %}
+
+
+
+<!-- saved modal -->
+<!-- Modal -->
+<div class="modal fade" id="MyMessage" tabindex="-1" aria-labelledby="MyMessageLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h6 class="modal-title" id="MyMessageLabel"> <i class="fa-solid fa-bookmark"></i>&nbsp;&nbsp; Recipe for <span class="fw-bold">{{details.title}}</span> is </h6>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="text-center text-success mt-4">
+                <i class="far fa-check-circle fa-7x" style="color: #4BB543;"></i>
+            </div>
+            <br>
+            <div class="mb-3 text-center">
+               <p class="lead fw-bold">Saved!</p> 
+            </div>
+            <div class="text-center">
+            <span>View</span><a class=" view text-underline-hover" href="{% url 'saved_list' %}"> All Saved Recipes</a>
+
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal" style="width: 65px;">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 <section class="details">
@@ -283,7 +329,7 @@
               <div class="swiper-slide">
                 <a class="recipe-title" href="{% url 'recipeDetails' id=rc.id%}">
                 <div class="" style="height: 24rem;">
-                    <img src="{{rc.image}}" class="image-resize" alt="...">
+                    <img src="{{rc.image}}" class="image-resize border-bottom" alt="...">
                     <div class="mt-3">
                         <p class="recipe_category"># {{rc.category}}</p>
                       <h6 class=" fw-bold">{{rc.title}}</h6>
