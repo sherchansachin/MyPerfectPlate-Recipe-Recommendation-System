@@ -16,6 +16,7 @@ crispy-bootstrap5 = "*"
 joblib = "*"
 scikit-learn = "*"
 requests = "*"
+django-jazzmin = "*"
 
 [dev-packages]
 
