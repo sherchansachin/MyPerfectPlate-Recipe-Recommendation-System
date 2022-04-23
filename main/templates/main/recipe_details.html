@@ -164,6 +164,8 @@
     </div>
 </section>
 
+
+
 <!-- Modal -->
 <div class="modal fade" id="notesModal" tabindex="-1" aria-labelledby="notesModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -175,8 +177,13 @@
         <div class="modal-body">
           <form class="">
             {% csrf_token %}
-            <textarea name="review" rows="3" class="form-control mb-3" placeholder="Type in your notes"></textarea>
-            <button data-bs-dismiss="modal" type="submit" class="btn btn-primary">Add note</button>
+
+            <textarea name="note" rows="5" maxlength="400" id="message" class="form-control mb-2" placeholder="Type in your notes"></textarea>
+            <span id="remaining"></span>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Add note</button>
+              </div>
+           
         </form>
         </div>
       </div>
