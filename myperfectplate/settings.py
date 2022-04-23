@@ -33,6 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'active_link',
     'django_extensions',
     'crispy_forms',
@@ -49,6 +50,39 @@ INSTALLED_APPS = [
     'planner.apps.PlannerConfig',
     
 ]
+
+# jazzmin customization
+JAZZMIN_SETTINGS = {
+    # title of the window (Will default to current_admin_site.site_title if absent or None)
+    "site_title": "My Perfect Plate Admin",
+
+    # Title on the login screen (19 chars max) (defaults to current_admin_site.site_header if absent or None)
+    "site_header": "My Perfect Plate",
+
+    # Title on the brand (19 chars max) (defaults to current_admin_site.site_header if absent or None)
+    "site_brand": "My Perfect Plate",
+
+    # Logo to use for your site, must be present in static files, used for brand on top left
+    "site_logo": "/image/logo2.svg",
+
+    # CSS classes that are applied to the logo above
+    "site_logo_classes": "img-circle",
+
+    # Relative path to a favicon for your site, will default to site_logo if absent (ideally 32x32 px)
+    "site_icon": None,
+
+    # Welcome text on the login screen
+    "welcome_sign": "My Perfect Plate Admin Page",
+
+    # Copyright on the footer
+    "copyright": "My Perfect Plate",
+
+    # The model admin to search from the search bar, search bar omitted if excluded
+    "search_model": "auth.User",
+
+    # Field name on user model that contains avatar ImageField/URLField/Charfield or a callable that receives the user
+    "user_avatar": None,
+}
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 

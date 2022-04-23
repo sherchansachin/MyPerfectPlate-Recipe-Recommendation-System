@@ -169,22 +169,16 @@
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="notesModalLabel">Save a note</h5>
+          <h6 class="modal-title" id="notesModalLabel">Jot down some note for this recipe</h6>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <form class="">
             {% csrf_token %}
             <textarea name="review" rows="3" class="form-control mb-3" placeholder="Type in your notes"></textarea>
-            <button hx-post="#" hx-target="#plan-list" data-bs-dismiss="modal" type="submit" class="btn btn-primary">Add note</button>
-
-            <!-- <input type="text" name="planname" class="form-control-sm mr-2" placeholder="Enter a Plan name" /><br> -->
+            <button data-bs-dismiss="modal" type="submit" class="btn btn-primary">Add note</button>
         </form>
         </div>
-        <!-- <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-         
-        </div> -->
       </div>
     </div>
   </div>
@@ -281,7 +275,7 @@
     </div>
 </section>
 
-<section class="py-5">
+<!-- <section class="py-5">
     <div class="container">
         <div class="row">
             <div class="col-md-6">
@@ -311,18 +305,18 @@
                         
                     </div>
                 </div>
-            </div> <!-- icontext.// -->
+            </div> 
             
         </article>
 {% endfor %}
 </div>
 </div>
         </div>
-</section>
+</section> -->
 
-<section class="py-4">
+<section class="py-5">
     <div class="container">
-        <h5 class="pb-3">Similar recipes for <span class="fw-bold">{{details.title}}</span> :</h5>
+        <h5 class="pt-3">Similar recipes for <span class="fw-bold">{{details.title}}</span> :</h5>
         <div class="swiper mySwiper py-5">
             <div class="swiper-wrapper">
             {% for rc in recommendated  %}
