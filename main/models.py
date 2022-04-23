@@ -1,4 +1,3 @@
-from django.core.validators import MaxValueValidator, MinValueValidator
 from django.contrib.auth.models import User
 from django.db import models
 from autoslug import AutoSlugField
@@ -45,3 +44,11 @@ class Rating(models.Model):
     
     def __str__(self):
         return '{} rated {} plan for {}'.format(self.user, self.ratings, self.recipe)
+
+class Notes(models.Model):
+    recipe = models.ForeignKey(Recipes, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    note = models.TextField(max_length=400)
+
+    def __str__(self):
+        return '{} saved a note for {}'. format(self.user, self.recipe)

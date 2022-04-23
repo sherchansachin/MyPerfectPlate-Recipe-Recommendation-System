@@ -122,6 +122,9 @@ def recipe_details(request, id):
     
      # Get the reviews
     reviews = Rating.objects.filter(recipe_id=id)
+
+    # save notes
+    
         
     tags = details.tags.split('#')
     ingredients = details.ingredients.split('#')
