@@ -34,7 +34,7 @@
 </section>
 
 
-<section >
+<section class="py-4">
     <div class="container">
         <div class="row ">
             <div class="col-md-4">
@@ -47,7 +47,7 @@
                              <hr>
                         <p class="fs-3 fw-bold ">Username: {{ user.username }}</p>
                         <p class="text-gray mt-3 ">Email: {{ user.email }}</p>
-                        <p><a class="plannerlink" href="#"><i class="fa-solid fa-calendar-day me-2"></i>See Meal Planner</a></p>
+                        <p><a class="plannerlink" href="{% url 'planner' %}"><i class="fa-solid fa-calendar-day me-2"></i>See Meal Planner</a></p>
                     </div>
                 </div>
             </div><div class="col-md-1"></div>
