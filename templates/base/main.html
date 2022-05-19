@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'image/logo2.svg'%}">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter&family=Lato&display=swap" rel="stylesheet">
@@ -36,6 +39,60 @@
 
 
     {% endblock %}
+
+    <!-- footer -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-md-6">
+            <h4>About MyPerfectPlate</h4>
+            <p class="text-justify">MyPerfectPlate is a final year project developed as a recipe recommendation system which advocates different
+              recipes to the end-users based on their individual taste and recipe preference types.</p>
+          </div>
+
+          <div class="col-6 col-md-3">
+              <h4>Features</h4>
+                  <ul class="footer-links inline">
+                      <li> <strong>Explore different recipes</strong> </li>
+                      <li>(Filter by category)</li>
+                      <li> <strong>Recipes recommendation</strong> </li>
+                      <li><strong>Create a Meal plan</strong></li>
+                  </ul>
+              </div>
+
+              <div class="col-6 col-md-3">
+                  <h4>Go Tos</h4>
+                      <ul class="footer-links inline">   
+                          <li><a href="{% url 'recipes' %}">Recipes</a></li>
+                          <li><a href="{% url 'planner' %}">My plans</a></li>
+
+                        
+                          <li><a href="{% url 'login'%}">Log in</a></li>
+                          <li><a href="{% url 'register'%}">Sign up</a></li>
+                         
+                      </ul>
+                  </div>
+
+
+          </div>
+          <hr class="small">
+          </div>
+
+      <div class="container mt-4">
+        <div class="row">
+          <div class="col-md-8 col-sm-6 col-12">
+            <p class="copyright-text">Copyright  &copy; 2020 <a href="#">MyPerfectPlate</a> </p>
+          </div>
+
+          <div class="col-md-4 col-sm-6 col-12 social-icons">
+            
+              <a href="facebook.com" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="istagram.com" aria-label="instagram"><i class="fab fa-instagram"></i></a>
+              <a href="tripadvisor.com" aria-label="Tripadvisor"><i class="fa-brands fa-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+    </footer>
     
     
 <!-- swiper js -->
