@@ -3,10 +3,105 @@
 {% block content %}
 
 {% include 'base/transparent-navbar.html' %}
+<style>
+  .swiper-slide a{
+        color: #000;
+        cursor: pointer;
+    }
+    .image-resize {
+    height: 230px;
+    object-fit: cover;
+  }
+
+  .recent a {
+    color: #000;
+  }
+
+  .recommendated a{
+    color: #000;
+  }
+
+  .list-group-hover .list-group-item:hover {
+    background-color: #f5f5f5;
+    }
+
+    .mealplans .icon{
+      margin-bottom: 20px;
+    }
+
+    .mealplans .icon-box {
+      padding: 30px;
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+      background: #fff;
+      box-shadow: 0 0 29px 0 rgba(37, 37, 37, 0.12);
+      
+      z-index: 1;
+    }
+
+    .mealplans .icon i {
+      font-size: 40px;
+      line-height: 1;
+      color: #1B4C7B;
+    }
+
+    .keyword{
+      color: #1B4C7B;
+    }
+
+    .plan-img{
+      -ms-transform: rotate(20deg); 
+      transform: rotate(1deg);
+    }
+
+    /* .build-text{
+      color: #1B4C7B;
+    } */
+
+    .mealplan .box {
+      border-radius: 10px;
+      padding: 50px 30px;
+      box-shadow: 0 0 25px 0 rgba(87, 85, 85, 0.12);
+      transition: all ease-in-out 0.3s;
+    }
+
+    .mealplan .box span {
+      display: block;
+      font-size: 28px;
+      font-weight: 700;
+      color: #1B4C7B;
+    }
+
+    .mealplan .box h4 {
+      font-size: 24px;
+      font-weight: 600;
+      padding: 0;
+      margin: 20px 0;
+      color: #353535;
+    }
+
+    .mealplan .box p {
+      color: #919191;
+      font-size: 15px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .mealplan .box:hover {
+      background: #1B4C7B;
+      padding: 30px 30px 70px 30px;
+      box-shadow: 10px 15px 30px rgba(0, 0, 0, 0.18);
+    }
+
+    .mealplan .box:hover span, .mealplan .box:hover h4, .mealplan .box:hover p {
+      color: #fff;
+    }
+</style>
 
 
 <section class="back">
-<div class="container home-back col-10 py-2 hero">
+<div class="container home-back col-10 py-1 hero">
   <div class="row align-items-center g-lg-5 py-5">
     <div class="col-lg-6  py-5">
       <img src="{% static 'image/lines2.svg' %}" alt="three lines">
@@ -34,7 +129,165 @@
   </div>
 </div>
 </section>
- 
+
+{% if user.is_authenticated %}
+
+
+  <section class="py-5 bg-light popular_title">
+    <div class="container">
+    <h3 class="pt-3 pb-3 fw-bold"><img src="{% static 'image/popular.svg' %}" class="me-2" alt="stars">You might like  <span class="keyword">these recipes:</span></h3>
+        <div class="swiper mySwiper py-5">
+            <div class="swiper-wrapper">
+            {% for rc in recommendated  %}
+              <div class="swiper-slide">
+                <a class="recipe-title" href="{% url 'recipeDetails' id=rc.id%}">
+                <div class="" style="height: 24rem;">
+                  <div class="inner">
+                    <img src="{{rc.image}}" class="image-resize border-bottom" alt="recipe_image">
+                  </div>
+                    <div class="mt-3">
+                        <p class="recipe_category"># {{rc.category}}</p>
+                      <h6 class=" fw-bold">{{rc.title}}</h6>
+                      
+                    </div>
+                  </div>
+                  </a>
+              </div>
+              {% empty %}
+              <h5 class="py-4">Opps, you must rate some <mark> recipes first </mark>to get recommendations!</h5>
+              
+             {% endfor %}
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>    
+    </div>
+    
+</section>
+
+  
+
+  <!-- displaying the popular recipes by views count for not loggedin users-->
+
+  {% else %}
+  
+  <section class="py-5 bg-light popular_title">
+    <div class="container">
+        <h3 class="fw-bold pt-3"><img src="{% static 'image/popular.svg' %}" class="me-2" alt="stars">Popular Recipes</h3>
+        <div class="swiper mySwiper py-5">
+            <div class="swiper-wrapper">
+            {% for rc in popular_recipes  %}
+              <div class="swiper-slide">
+                <a class="recipe-title" href="{% url 'recipeDetails' id=rc.id%}">
+                <div class="" style="height: 24rem;">
+                  <div class="inner">
+                    <img src="{{rc.image}}" class="image-resize border-bottom" alt="recipe_image">
+                  </div>
+                    <div class="mt-3">
+                        <p class="recipe_category"># {{rc.category}}</p>
+                      <h6 class=" fw-bold">{{rc.title}}</h6>
+                      
+                    </div>
+                  </div>
+                  </a>
+              </div>
+             {% endfor %}
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>    
+    </div>
+</section>
+
+
+
+  {% endif %}
+  </div>
+
+
+  <!-- notes section -->
+   
+      <section class="py-5">
+        <div class="container">
+          <div class="row align-items-center justify-content-between">
+            <div class="col-md">
+              <img src="{% static 'image/notesmealplan.svg' %}" class="img-fluid" alt="" />
+            </div>
+            <div class="col-md p-5">
+              <h2 class="fw-bold mb-4">Organize your Meal Plans</h2>
+              <p class="lead">
+                Choose from different recipes and organize your meals!
+              </p>
+              <p>
+                MyPerfectPlate helps you explore different recipes based on your preferences, choose any recipe as per your choice and 
+                add specify a day to keep your favourite recipes in your meal plan. MyPerfectPlate helps you organize your meal plans, try it now!
+              </p>
+              <a href="{% url 'planner' %}"  class="btn btn-primary mt-4 " >Get Started <i class="fa-solid fs-6 fa-chevron-right ms-2"></i></a>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+    
+    
+
+    <section class="mealplan bg-light py-5">
+      <div class="container py-3">
+        <div class="col-md-12 px-3 mt-4">
+          <h3 class="mb-5 fw-bold"><i class="fa-solid fa-play"></i> Head start your <span class="keyword"> weekly meal plans</span> by: </h3>
+
+          <div class="row">
+            <div class="col-lg-4 col-md-6 mt-4 mt-lg-0">
+              <div class="box" >
+                <span>01</span>
+                <h4><i class="fa-solid fa-magnifying-glass me-3"></i>Discover Recipes</h4>
+                <p>Head start your meal plans by exploring different recipes based on categories.</p>
+              </div>
+            </div>
+  
+            <div class="col-lg-4 col-md-6 mt-4 mt-lg-0">
+              <div class="box">
+                <span>02</span>
+                <h4><i class="fa-regular fa-calendar-check me-3"></i>Select the days</h4>
+                <p>Once you've selected your desired recipes, add to meal planner by specifying a day.</p>
+              </div>
+            </div>
+  
+            <div class="col-lg-4 col-md-6 mt-4 mt-lg-0">
+              <div class="box">
+                <span>03</span>
+                <h4><i class="fa-solid fa-utensils me-3"></i>Explore your plans</h4>
+                <p>After selecting the day, select which day's meal plan you wish to look for and explore.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+    
+
+    <section class="py-5">
+      <div class="container">
+        <div class="row gx-5 align-items-center justify-content-between">
+          <div class="col-md p-5">
+            <h2 class="fw-bold mb-4">Save your favourite recipes</h2>
+            <p class="lead">
+              MyPerfectPlate assits you save recipes for the future,
+            </p>
+            <p>
+             Save different catagories of recipe in your profile by choosing, what you only
+             wish for. You can cook them late for various occasions, celebrations or your me-time.
+              Go through the details of the recipe and enjoy!
+            </p>
+            <a href="{% url 'recipes' %}"  class="btn btn-primary mt-4 " >Explore recipes<i class="fa-solid fs-6 fa-chevron-right ms-2"></i></a>
+          </div>
+          <div class="col-md">
+            <img src="{% static 'image/saves.svg' %}" class="img-fluid" alt="" />
+          </div>
+        </div>
+      </div>
+    </section>
+   
 
 
 
